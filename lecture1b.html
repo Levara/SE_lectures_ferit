@@ -1,0 +1,787 @@
+
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Software Engineering - Lecture 1b</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/night.css" id="theme">
+    <link rel="stylesheet" href="css/levara.css" >
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/xcode.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+      <div class="header">
+        Software Engineering course @ FERIT Osijek. <a href="#attribution">Attribution for background images</a>
+      </div>
+      
+
+			<div class="slides">
+
+        <section data-background-image="./assets/matrix.jpg" data-state="dim">
+          <h3>
+            Software Engineering
+            </br>
+            Programsko inženjerstvo
+          </h3>
+          <p>
+          Izv.prof.dr.sc. Irena Galić <br />
+          Hrvoje Leventić
+          </p>
+        </section>
+
+
+
+
+        <section>
+          <h1>Predavanje 1b</h1>
+          <h2>Clean Code</h2>
+        </section>
+
+        <section>
+          <h2>Sadržaj</h2>
+          <ul>
+            <li class="fragment"> Što je <em>čist kod</em>    </li>
+            <li class="fragment"> Karakteristike čistog koda    </li>
+            <li class="fragment"> <em>Coding</em> standardi</li>
+            <li class="fragment"> Najčešće preporuke    </li>
+            <li class="fragment"> <em>Code smells</em>    </li>
+          </ul>
+          <p class="source "> 
+            A lot of code snippets are taken from the book 
+          <em>
+            Clean Code: A Handbook of Agile Software Craftsmanship by
+            Robert C. Martin, Prentice Hall, 2009
+          </em>
+          </p>
+        </section>
+
+        <section>
+          <h1>Što je <em>čist kod</em></h1>
+        </section>
+
+        <section>
+          <img class="stretch" src="./assets/wtfm.jpg" alt=""/>
+          <p class="source ">Source: 
+            <em> <a href=" http://www.osnews.com/story/19266/WTFs_m" target="_blank">Thom Holwerda</a> </em>
+          </p>
+        </section>
+
+
+        <section>
+          <h3> Što je čist kod? </h3>
+          <blockquote class="fit"> 
+            I like my code to be elegant and efficient. The
+            logic should be straightforward to make it hard
+            for bugs to hide, the dependencies minimal to
+            ease maintenance, error handling complete
+            according to an articulated strategy, and 
+            per formance close to optimal so as not to tempt
+            people to make the code messy with unprinci pled 
+            optimizations. Clean code does one thing well.
+          </blockquote>
+          <p class="source ">Source: 
+            <em> Bjarne Stroustrup</em>, izumitelj C++ jezika
+          </p>
+        </section>
+
+        <section>
+          <h3> Što je čist kod? </h3>
+          <blockquote class="fit">
+            I could list all of the qualities that I notice in
+            clean code, but there is one overarching quality
+            that leads to all of them. Clean code always
+            looks like it was written by someone who cares.
+            There is nothing obvious that you can do to
+            make it better. All of those things were thought
+            about by the code’s author, and if you try to
+            imagine improvements, you’re led back to
+            where you are, sitting in appreciation of the
+            code someone left for you—code left by someone 
+            who cares deeply about the craft.
+          </blockquote>
+          <p class="source ">Source: 
+            <em> Michael Feathers </em>
+          </p>
+        </section>
+
+        <section>
+          <h3> Što je čist kod? </h3>
+          <blockquote>
+            <ul>
+              <li>Easy to understand.</li>
+              <li>Easy to modify.</li>
+              <li>Easy to test.</li>
+              <li>Works correctly.</li>
+            </ul>
+          </blockquote>
+          <p class="source ">Source: 
+            <a href=" https://stackoverflow.com/a/954582" target="_blank">https://stackoverflow.com/a/954582</a>  
+          </p>
+        </section>
+
+        <section>
+          <h2> Karakteristike čistog koda  </h2>
+        </section>
+
+        <section>
+          <h3>Naziv treba otkrivati namjeru</h3>
+          
+          <ul>
+            <li class="fragment">Iz imena varijable, funkcije ili klase 
+              <strong>mora biti jasno</strong>
+              što ona radi
+            </li>
+            <li class="fragment">Ako je potreban komentar kod imena, 
+              <strong>ime nije dobro</strong></li>
+          </ul>
+
+          <pre class="fragment"><code data-trim>
+              int d; // elapsed time in days
+          </code></pre>
+          <p class="fragment"><strong>vs.</strong></p>
+          <pre class="fragment"><code data-trim>
+              int elapsedTimeInDays;
+              int daysSinceCreation;
+              int daysSinceModification;
+              int fileAgeInDays;
+          </code></pre>
+
+        </section>
+
+        <section>
+          <h4>Kod se puno češće čita nego piše</h4>
+          <pre ><code class="cpp" data-trim>
+            void myfun(int *x, int n) {
+              int i, f=0;
+              do {
+                f = 0;
+                for (i = 0; i < n-1; i++) {
+                  if (x[i] > x[i+1]) {
+                    int t;
+                    t = x[i];
+                    x[i] = x[i+1];
+                    x[i+1] = t;
+                    f = 1;
+                  }
+                }
+              } while (f);
+            }
+          </code></pre>
+        </section>
+
+        <section>
+          <pre class="stretch"><code class="cpp" data-trim>
+            void swap(int *x, int *y) {
+              int temp;
+              temp = *x;
+              *x = *y;
+              *y = temp;
+            }
+            void bubbleSort(int *array, int number_of_elements) {
+              int i, sort_flag=0;
+              do {
+                sort_flag = 0;
+                for (i = 0; i < number_of_elements - 1; i++) {
+                  if (array[i] > array[i+1]) {
+                    swap(&array[i], &array[i+1]);
+                    sort_flag = 1;
+                  }
+                }
+              } while (sort_flag);
+            }
+          </code></pre>
+        </section>
+
+        <section>
+          <h3>Don't be clever!</h3>
+          <pre><code class="cpp" data-trim>
+            void bubbleSort(int *array, int number_of_elements) {
+              int i, sort_flag=1;
+              while (sort_flag) {
+                sort_flag = 0;
+                for (i = 0; i < number_of_elements - 1; i++)
+                  array[i] > array[i+1] ? 
+                      swap(&array[i], &array[i+1]), sort_flag++ : continue; 
+              }
+            } </code></pre>
+          <blockquote class="fragment">
+            Debugging is twice as hard as writing the code in the first place.
+            Therefore, if you write the code as cleverly as possible, you are,
+            by definition, not smart enough to debug it.
+          </blockquote>
+          <p class="source ">Source: 
+            <em> Brian W. Kernighan </em>
+          </p>
+        </section>
+
+        <section>
+          <h3> Izbjegavanje dezinformacije </h3>
+          <ul>
+            <li class="fragment">Izbjegavajte izraze koji imaju uvriježeno značenje</li>
+            <li class="fragment">
+              <code class="cpp inline">hp</code>, 
+              <code class="cpp inline">aix</code>, 
+              <code class="cpp inline">sco</code>
+              su imena Unix platformi ili varijanti
+            </li>
+            <li class="fragment">Je li <code class="cpp inline">accountList</code>
+              stvarno lista?
+            </li> 
+            <li class="fragment">Dugačka imena koja se malo razlikuju: <br />
+              <pre><code class="cpp" data-trim>
+              XYZControllerForEfficientHandlingOfStrings
+              XYZControllerForEfficientStorageOfStrings</code></pre>
+            </li>
+            <li class="fragment"> Korištenje malog slova <code class="cpp inline">l</code>
+              ili velikog slova <code class="cpp inline">O</code> kao varijable
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Imena laka za izgovoriti  </h3>
+          <pre class="fragment"><code class="cpp" data-trim>
+            class DtaRcrd102 {
+              private Date genymdhms;
+              private Date modymdhms;
+              private final String pszqint = "102";
+              /* ... */
+            };
+          </code></pre>
+          <p class="fragment"><strong>VS.</strong></p>
+          <pre class="fragment"><code class="cpp" data-trim>
+            class Customer {
+              private Date generationTimestamp;
+              private Date modificationTimestamp;
+              private final String recordId = "102";
+              /* ... */
+            };
+          </code></pre>
+        </section>
+
+        <section>
+          <h3>Imena laka za pretraživanje </h3>
+          <pre class="fragment"><code class="cpp" data-trim>
+              typedef struct student {
+                char *name, *lastName;
+                Course *courses[7];
+              } Student;
+              /* ... */
+              Student student;
+              /* ... */
+              for(int i = 0; i < 7; i++) 
+                 puts( student.courses[i]->name );
+          </code></pre>
+          <p class="fragment"><strong>VS.</strong></p>
+          <pre class="fragment"><code class="cpp" data-trim>
+              #define NUMBER_OF_COURSES_PER_STUDENT 7
+              typedef struct student {
+                char *name, *lastName;
+                Course *courses[NUMBER_OF_COURSES_PER_STUDENT];
+              } Student;
+              /* ... */
+              Student student;
+              /* ... */
+              for(int i = 0; i < NUMBER_OF_COURSES_PER_STUDENT; i++) 
+                 puts( student.courses[i]->name );
+          </code></pre>
+        </section>
+
+
+        <section>
+          <h3>Mentalne mape </h3>
+          <ul>
+            <li class="fragment green-text"> 
+              <code class="cpp inline">i</code>, 
+              <code class="cpp inline">j</code>,
+              <code class="cpp inline">k</code> kao loop counteri u određenim slučajevima
+            </li>
+            <li class="fragment red-text">
+              <code class="cpp inline">r</code> kao <em>lowercase</em> url
+            </li>
+            <li class="fragment red-text">
+              <code class="cpp inline">man</code> kao ime studenta s najvećim prosjekom ocjena 
+            </li>
+            <li class="fragment red-text">
+              <code class="cpp inline">c</code> kao broj studenata s prosjekom većim od 3.5 koji se zovu Pero 
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h3> Imena klasa </h3>
+          <ul>
+            <li class="fragment">Imenice: 
+              <ul>
+                <li class="fragment"> <code class="cpp inline">Customer</code></li>
+                <li class="fragment"> <code class="cpp inline">Image</code></li>
+                <li class="fragment"> <code class="cpp inline">AddressParser</code></li>
+                <li class="fragment"> <code class="cpp inline">Visualizer</code></li>
+              </ul>
+            </li>
+            <li class="fragment">Ne koristiti  glagole</li>
+            <li class="fragment">Izbjegavati riječi 
+              <ul>
+                <li class="fragment"> <code class="cpp inline">Manager</code></li>
+                <li class="fragment"> <code class="cpp inline">Processor</code></li>
+                <li class="fragment"> <code class="cpp inline">Data</code></li>
+                <li class="fragment"> <code class="cpp inline">Info</code></li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h3> Imena metoda </h3>
+          <ul>
+            <li class="fragment">Glagoli:
+              <ul>
+                <li class="fragment"> <code class="cpp inline">postPayment</code></li>
+                <li class="fragment"> <code class="cpp inline">deletePage</code></li>
+                <li class="fragment"> <code class="cpp inline">fillImageWithZeros</code></li>
+                <li class="fragment"> <code class="cpp inline">getEncodedAddress</code></li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h3> Don't be cute! </h3>
+          <ul>
+            <li class="fragment">
+              <code class="cpp inline">exterminate()</code> umjesto 
+              <code class="cpp inline">kill()</code>
+            </li>
+            <li class="fragment">
+              <code class="cpp inline">endAllSuffering()</code> umjesto
+              <code class="cpp inline">abort()</code>
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h3> Jedna riječ po konceptu </h3>
+          <ul>
+            <li class="fragment">Odaberi jednu riječ za neki apstraktni koncept</li>
+            <li class="fragment">Konzistentnost kroz cijeli kod</li>
+            <li class="fragment"> <code class="cpp inline">fetch</code>,
+              <code class="cpp inline">retrieve</code>, i 
+              <code class="cpp inline">get</code> su ekvivalentni koncepti.
+            </li>
+            <li class="fragment">Imena funkcija trebaju biti samoopisna (Intellisense)
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h3> Semantički ispravne riječi </h3>
+          <ul>
+            <li class="fragment"> <code class="cpp inline">add</code>
+            označava zbrajanje ili nadodavanje (concatenation)
+            </li> 
+            <li class="fragment"> <code class="cpp inline">append</code> ili 
+              <code class="cpp inline">insert</code>
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h3> Smislen kontekst  </h3>
+          <ul>
+            <li class="fragment">Primjer adrese</li>
+            <li class="fragment">
+              <code class="cpp inline">firstName</code>, 
+              <code class="cpp inline">lastName</code>, 
+              <code class="cpp inline">street</code>, 
+              <code class="cpp inline">houseNumber</code>, 
+              <code class="cpp inline">city</code>, 
+              <code class="cpp inline">state</code>, 
+              <code class="cpp inline">country</code>
+            </li>
+            <li class="fragment">Dodati prefix</li>
+            <li class="fragment">
+              <code class="cpp inline">addrFirstName</code>, 
+              <code class="cpp inline">addrLastName</code>, 
+              <code class="cpp inline">addrStreet</code>...
+            </li>
+            <li class="fragment">Još bolje - klasa 
+              <code class="cpp inline">Address</code>
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h3> Funkcije </h3>
+          <blockquote>
+            The first rule of functions is that they should be small. The
+            second rule of functions is that they should be smaller than that. 
+          </blockquote>
+          <p class="source ">Source: 
+            <em>
+                Clean Code: A Handbook of Agile Software Craftsmanship, 
+                Robert C. Martin, Prentice Hall, 2009
+            </em>
+          </p>
+          <ul>
+            <li class="fragment">
+              <strong>
+                Funkcije trebaju odrađivati jednu i  samo jednu stvar
+              </strong>
+            </li>
+          </ul>
+        </section>
+
+        <!--TODO: Staviti suvisao primjer!!!!-->
+        <!--<section>-->
+          <!--<pre class="fragment"><code class="cpp" data-trim>-->
+              <!--Matrix *loadMatrixFromFile(const char *filename) {-->
+                <!--FILE *f = fopen(filename, "r");-->
+                <!--int n;-->
+                <!--fscanf(f, "%d", &n)-->
+                
+          <!--</code></pre>-->
+        <!--</section>-->
+
+        <section>
+          <h3>Single Responsibility Principle  </h3>
+          <ul>
+            <li class="fragment">Svaki modul ili klasa trebaju biti odgovorni za samo jedan dio funkcionalnosti</li>
+            <li class="fragment">Potpuna enkapsulacija</li>
+            <li class="fragment">Svaka klasa treba imati samo jedan razlog za promjenu</li>
+            <li class="fragment">Primjer modul za sastavljanje i printanje izvješća</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3> Komentari </h3>
+          <blockquote class="fit">
+             Good code is its own best documentation. As you’re about to add a
+             comment, ask yourself, ‘How can I improve the code so that this
+             comment isn’t needed?’ Improve the code and then document it to
+             make it even clearer.
+          </blockquote>
+          <p class="source ">Source: 
+            <em>Steve McConnel</em>
+          </p>
+          <ul>
+            <li class="fragment">Nužno zlo</li>
+            <li class="fragment">Komentari lažu</li>
+            <li class="fragment">Teški su za održavanje</li>
+            <li class="fragment">Uz dobre nazive komentari su suvišni</li>
+            <li class="fragment">Bolje je više manjih jednostavnih funkcija </li>
+            <li class="fragment">Ne odnosi se na Public API</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3> Komentari </h3>
+          <pre><code class="cpp" data-trim>
+            //When I wrote this, only God and I understood what I was doing
+            //Now, God only knows
+          </code></pre>
+          <p class="source ">Source: 
+            <em> <a href=" https://stackoverflow.com/questions/184618/what-is-the-best-comment-in-source-code-you-have-ever-encountered/" target="_blank">Stack Overflow: What is the best comment in source code you have ever encountered</a> </em>
+          </p>
+          <ul>
+            <li class="fragment">Ne komentirati očite stvari
+              <pre><code class="cpp" data-trim>
+                return 1; // returns 1
+              </code></pre>
+            </li>
+            <li class="fragment">Ponovno: Don't be cute!
+              <pre><code class="cpp" data-trim>
+                  /* 
+                   * Replaces with spaces 
+                   * the braces in cases 
+                   * where braces in places 
+                   * cause stasis.
+                  **/ 
+                  $str = str_replace(array("\{","\}")," ",$str);
+              </code></pre>
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h3> Dobri komentari </h3>
+          <ul>
+            <li class="fragment">Objašnjenje namjere - razlog zašto, a ne kako
+              <pre><code class="cpp" data-trim>
+                //This is our best attempt to get a race condition
+                //by creating large number of threads.
+                for (int i = 0; i < 25000; i++) {
+                  WidgetBuilderThread widgetBuilderThread =
+                    new WidgetBuilderThread(widgetBuilder, text, parent, failFlag);
+                  Thread thread = new Thread(widgetBuilderThread);
+                  thread.start();
+                }
+              </code></pre>
+            </li>
+            <li class="fragment">Upozorenje o posljedicama:
+              <pre><code class="cpp" data-trim>
+                public static SimpleDateFormat makeStandardHttpDateFormat()
+                {
+                  //SimpleDateFormat is not thread safe,
+                  //so we need to create each instance independently.
+                  SimpleDateFormat df = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss z");
+                  df.setTimeZone(TimeZone.getTimeZone("GMT"));
+                  return df;
+              }
+              </code></pre>
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h3> Formatiranje koda </h3>
+          <img class="stretch" src="./assets/two_types_braces.png" alt="" />
+        </section>
+
+        <section>
+          <h3> Formatiranje koda </h3>
+          <ul>
+            <li class="fragment">Formatiranje koda je bitno</li>
+            <li class="fragment">Svatko misli da je njegov način najbolji</li>
+            <li class="fragment">Treba se dogovoriti oko standarda i pridržavati ga se</li>
+            <li class="fragment">Podijeliti funkcionalnost u fileove prema konvencijama jezika</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3> Vertikalno formatiranje </h3>
+          <ul>
+            <li class="fragment">Izbjegavati ogromne fileove</li>
+            <li class="fragment">High-level funkcije na vrh, detalji niže</li>
+            <li class="fragment">Vizualno odvojiti bitne dijelove (npr. metode)</li>
+            <li class="fragment">Konceptualno slične dijelove koda smjestiti jedne blizu drugih</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3> Horizontalno formatiranje </h3>
+          <ul>
+            <li class="fragment">Razmaci naglašavaju bitne akcije
+              <pre><code class="cpp" data-trim>
+                private void measureLine(String line) {
+                  lineCount++;
+                  int lineSize = line.length();
+                  totalChars += lineSize;
+                  lineWidthHistogram.addLine(lineSize, lineCount);
+                  recordWidestLine(lineSize);
+                }
+              </code></pre>
+            </li>
+            <li class="fragment"> Horizontalno poravnavanje 
+              <pre><code class="cpp" data-trim>
+                int times   = input.GetDimension_T();
+                int slices  = input.GetDimension_S();
+                int rows    = input.GetDimension_R();
+                int columns = input.GetDimension_C();
+              </code></pre>
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h3> Indentation </h3>
+          <pre><code class="cpp" data-trim>
+            double mindist=input.GetDimension_S();
+            for( unsigned int s = 0; s < input.GetDimension_S(); ++s ) {
+              for( unsigned int r = 0; r < input.GetDimension_R(); ++r ) {  
+                for( unsigned int c = 0; c < input.GetDimension_C(); ++c ) {
+                  if( input(s,r,c) ) {
+                    candidate.SetIndex(s,r,c);
+                    if( startvox.DistanceEuclidean(candidate) < mindist) {
+                      minvox.SetIndex(s,r,c);
+                      mindist = startvox.DistanceEuclidean(candidate);
+                    }
+                  }
+                }
+              }
+            }
+            start = minvox;
+          </code></pre>
+        </section>
+
+        <section>
+          <h3> Indentation </h3>
+          <pre><code class="cpp" data-trim>
+              double mindist=input.GetDimension_S();
+              for( unsigned int s = 0; s < input.GetDimension_S(); ++s ) {
+              for( unsigned int r = 0; r < input.GetDimension_R(); ++r ) {  
+              for( unsigned int c = 0; c < input.GetDimension_C(); ++c ) {
+              if( input(s,r,c) ) {
+              candidate.SetIndex(s,r,c);
+              if( startvox.DistanceEuclidean(candidate) < mindist) {
+              minvox.SetIndex(s,r,c);
+              mindist = startvox.DistanceEuclidean(candidate);
+              } } } } }
+              start = minvox;
+          </code></pre>
+        </section>
+
+        <section>
+          <h3> Horizontalna širina </h3>
+          <ul>
+            <li class="fragment">Povjesni razlozi za 80 znakova</li>
+            <li class="fragment">Danas preporuke su oko 72 znaka</li>
+            <li class="fragment">Ne više od 100</li>
+          </ul>
+         <pre class="fragment"><code class="cpp" data-trim>
+            void vmxVisualizer::SetMesh(int number, mxImage &img, int mesh_value, 
+                                        double opacity, double red, double green, 
+                                        double blue, const char *img_name) 
+            {
+         </code></pre> 
+         <p class="fragment">
+           <strong>VS</strong>
+         </p>
+         <pre class="fragment"><code class="cpp" data-trim>
+            void vmxVisualizer::SetMesh(int number, mxImage &img, int mesh_value, double opacity, double red, double green, double blue, const char *img_name) 
+            {
+         </code></pre> 
+        </section>
+
+        <section>
+          <h3>Koding standardi  </h3>
+          <ul>
+            <li class="fragment">Uključuju sve navedeno</li>
+            <li class="fragment">Dogovor unutar tima</li>
+            <li class="fragment">Konzistentnost!</li>
+            <li class="fragment">Preporuka: 
+              <a href="https://www.joelonsoftware.com/2005/05/11/making-wrong-code-look-wrong/ " target="_blank">Making Wrong Code Look Wrong</a>, <em>Joel Spolsky, 2005</em>
+            </li>
+            <li class="fragment">Na LV: 
+              <a href=" https://www.python.org/dev/peps/pep-0008/" target="_blank">Python PEP8</a>
+            </li>
+            <li class="fragment">Dobar početak: 
+              <a href="https://github.com/google/styleguide" target="_blank">
+                Style guides for Google-originated open-source projects
+              </a>
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h3> Za kraj </h3>
+          <blockquote>
+           Always code as if the person who ends up maintaining your code will be a violent psychopath who knows where you live. 
+          </blockquote>
+            
+        </section>
+
+
+
+
+
+
+			</div>
+		</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback:
+            function() { hljs.initHighlightingOnLoad(); } },
+          { src: './plugin/chart/Chart.min.js' },
+          { src: './plugin/chart/csv2chart.js' },
+          { src: './plugin/fullscreen/fullscreen.js' },
+          { src: './plugin/menu/menu.js'}
+
+        ],
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1024,
+        height: 768,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.05,
+
+        transition: 'convex'
+
+      });
+
+      // Shows the slide number using default formatting
+      Reveal.configure({ slideNumber: true });
+
+      // Slide number formatting can be configured using these variables:
+      //  "h.v": 	horizontal . vertical slide number (default)
+      //  "h/v": 	horizontal / vertical slide number
+      //    "c": 	flattened slide number
+      //  "c/t": 	flattened slide number / total slides
+      Reveal.configure({ slideNumber: 'c/t' });
+
+      // Control which views the slide number displays on using the "showSlideNumber" value:
+      //     "all": show on all views (default)
+      // "speaker": only show slide numbers on speaker notes view
+      //   "print": only show slide numbers when printing to PDF
+      Reveal.configure({ showSlideNumber: 'all' });
+
+
+		</script>
+	</body>
+</html>

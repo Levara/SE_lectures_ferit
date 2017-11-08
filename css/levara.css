@@ -1,0 +1,88 @@
+
+.fragment.current-visible.visible:not(.current-fragment) {
+    display: none;
+    height:0px;
+    line-height: 0px;
+    font-size: 0px;
+}
+
+.reveal .source {
+  font-size: 0.45em;
+  margin: 0;
+  text-align: center;
+}
+
+.reveal .bgsource {
+
+}
+
+.reveal .blackbg, .reveal h1.blackbg, .reveal h2.blackbg, .reveal h3.blackbg, .reveal h4.blackbg {
+
+
+  background-color: rgba( 0,0,0, 0.9);
+  color: #ddd;
+}
+
+html.dim .backgrounds {
+   -webkit-filter: blur(2px) saturate(.5) brightness(.3);
+   -moz-filter: blur(2px) saturate(.7) brightness(.3);
+   -o-filter: blur(2px) saturate(.7) brightness(.3);
+   -ms-filter: blur(2px) saturate(.7) brightness(.3);
+   filter: blur(2px) saturate(.7) brightness(.3);
+}
+
+html.dim-low .backgrounds {
+   -webkit-filter: blur(2px) saturate(.5) brightness(.7);
+   -moz-filter: blur(2px) saturate(.7) brightness(.7);
+   -o-filter: blur(2px) saturate(.7) brightness(.7);
+   -ms-filter: blur(2px) saturate(.7) brightness(.7);
+   filter: blur(2px) saturate(.7) brightness(.7);
+}
+
+
+.reveal .header {
+  position: absolute;
+  top: 2.5em;
+  right: 2%;
+  text-align: right;
+  font-size: 0.35em;
+  /*background-color: rgba(0,0,0,0.9);*/
+  color: #999;
+  z-index: 1000;
+}
+
+.reveal .img-source {
+  width: 23%;
+  height: auto;
+  float: left;
+  border: 1px solid #999;
+  font-size: 0.3em;
+  margin: 0;
+  padding: 5px;
+  position: relative;
+}
+
+.reveal .img-source p {
+  position: absolute;
+  color: white;
+  background-color: black;
+  top: 0.1em;
+  left: 0.1em;
+}
+
+.reveal blockquote.fit {
+  width: 95%;
+
+}
+
+.reveal code.inline {
+  font-size: 1.1em;
+  font-weight: bold;
+}
+
+.reveal .green-text {
+  color: green;
+}
+.reveal .red-text {
+  color: red;
+}

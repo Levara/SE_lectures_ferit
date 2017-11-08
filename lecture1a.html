@@ -1,0 +1,1101 @@
+
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Software Engineering - Lecture 1</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/night.css" id="theme">
+    <link rel="stylesheet" href="css/levara.css" >
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+      <div class="header">
+        Software Engineering course @ FERIT Osijek. <a href="#attribution">Attribution for background images</a>
+      </div>
+      
+
+			<div class="slides">
+
+        <section data-background-image="./assets/matrix.jpg" data-state="dim">
+          <h3>
+            Software Engineering
+            </br>
+            Programsko inženjerstvo
+          </h3>
+          <p>
+          Izv.prof.dr.sc. Irena Galić <br />
+          Hrvoje Leventić
+          </p>
+        </section>
+
+
+
+
+        <section>
+          <h1>Predavanje 1a</h1>
+          <h2>Uvod u programsko inženjerstvo</h2>
+        </section>
+
+        <section>
+          <h2>Sadržaj</h2>
+          <ul>
+            <li class="fragment">Što je programsko inženjerstvo</li>
+            <li class="fragment">Zašto programsko inženjerstvo</li>
+            <li class="fragment">Faze u razvoju softverskih projekata</li>
+            <li class="fragment">Primjeri propalih projekata</li>
+            <li class="fragment">Etika softverskog inženjerstva</li>
+          </ul>
+        </section>
+
+        <section>
+          <h1>Softver nekada i danas</h1>
+        </section>
+
+
+
+        <section data-background-image="./assets/two_women_operating_ENIAC.gif">
+          <h2 class="blackbg">Nekada</h2>
+          <!--<div class="fragment current-visible">-->
+            <!--<img src="./assets/two_women_operating_ENIAC.gif" alt="">-->
+          <!--</div>-->
+          <ul>
+            <li class="fragment blackbg">Prva računala pojavila su se 1950-ih</li>
+            <li class="fragment blackbg">Mali programi koje su pisali i koristili eksperti</li>
+            <li class="fragment blackbg">Najčešće pisani od strane jedne osobe</li>
+            <li class="fragment blackbg">Ulaz - bušene kartice, izlaz - papir</li>
+            <li class="fragment blackbg">Radili su off-line</li>
+            <li class="fragment blackbg"><strong>Softver se dijelio uz hardver</strong></li>
+          </ul>
+
+          <aside class="notes">
+            <ul>
+              <li>
+                the programs were quite small, when compared those today; 
+              </li>  
+              <li>
+                they were written by one person; they were written and used by
+                experts in the application area concerned.  The problems to be
+                solved were mostly of a technical nature, and the emphasis was
+                on expressing known algorithms efficiently in some programming
+                language. 
+              </li>
+              <li>
+                Input
+                typically consisted of numerical data, read from such media as
+                punched tape or punched cards. The output, also numeric, was
+                printed on paper. Programs were run off-line. 
+              </li>
+              <li>
+                Software was mostly developed by hardware vendors and given
+                away for free. These vendors sometimes set up user groups to
+                discuss requirements, and next incorporated them into their
+                software. This software development support was seen as a
+                service to their customers.
+              </li>
+            </ul>
+          </aside>
+        </section>
+
+
+        <section data-background-image="./assets/open_space_office.jpg">
+          <h2 class="blackbg">Danas </h2>
+          <ul>
+            <li class="fragment blackbg">Ogromni softverski projekti</li>
+            <li class="fragment blackbg">Višegodišnji projekti na kojima sudjeluje više timova</li>
+            <li class="fragment blackbg">Timovi rašireni po cijelom svijetu</li>
+            <li class="fragment blackbg">Programeri != korisnici</li>
+          </ul>
+
+          <aside class="notes">
+            <li>
+              Present-day programs are often very large and are being developed
+              by teams that collaborate over periods spanning several years.
+            </li>
+
+            <li>
+              The programmers are not the future users of the system they develop
+              and they have no expert knowledge of the application area in
+              question. 
+            </li>
+
+            <li>
+              The problems that are being tackled increasingly concern
+              everyday life: 
+              automatic bank tellers, airline reservation, salary
+              administration, electronic commerce, automotive systems, etc.
+            </li>
+
+            <li>
+              Putting a man on the moon was not conceivable without computers.
+            </li>
+          </aside>
+        </section>
+
+        <section>
+          <h3>Softverska kriza</h3>
+          <h4>(Software Crisis)</h4>
+          <blockquote class="fit"> ...a term used in the early days of computing science for the difficulty of writing useful and efficient computer programs in the required time. The software crisis was due to the rapid increases in computer power and the complexity of the problems that could not be tackled. <br /> With the increase in the complexity of the software, many software problems arose because existing methods were insufficient. </blockquote>
+          <p class="source ">Source: 
+            <em> Wikipedia - Software Crisis </em>
+          </p>
+          
+          
+        </section>
+        <section>
+          <h4>Dijkstra o softverskoj krizi</h4>
+
+          <blockquote class="fit">
+            The major cause of the software crisis is that the machines have
+            become several orders of magnitude more powerful! To put it quite
+            bluntly: as long as there were no machines, programming was no
+            problem at all; when we had a few weak computers, programming
+            became a mild problem, and now we have gigantic computers,
+            programming has become an equally gigantic problem.
+          </blockquote>
+          
+          <p class="source ">Source: 
+            <em> Edsger Dijkstra, The Humble Programmer (EWD340), Communications of the ACM </em>
+          </p> 
+          
+        </section>
+
+
+
+        <section>
+          <h3>Softverska kriza</h3>
+
+          <ul>
+            <li class="fragment">Kriza se pojavila 1960-ih. Simptomi:</li>
+            <ul>
+              <li class="fragment">Projekti probijaju budžete</li>
+              <li class="fragment">Projekti probijaju vremenska ograničenja</li>
+              <li class="fragment">Softver je bio vrlo neefikasan</li>
+              <li class="fragment">Softver je bio niske kvalitete </li>
+              <li class="fragment">Softver često nije ispunjavao zahtjeve</li>
+              <li class="fragment">Projekti teški za upravljanje i održavanje</li>
+              <li class="fragment">Softver često uopće nije bio isporučen (dovršen)</li>
+            </ul>
+          </ul>
+        </section>
+
+        <aside class="notes">
+          <li>
+            In the 1960s, people started to realize that programming techniques
+            had lagged behind the developments in software both in size and
+            complexity. To many people, programming was still an art and had
+            never become a craft.
+          </li>
+
+          <li>
+            An additional problem was that many programmers had not been formally
+            educated in the field. They had learned by doing. On the
+            organizational side, attempted solutions to problems often involved
+            adding more and more programmers to the project, the so-called
+            ‘million-monkey’ approach.
+          </li>
+
+          <li>
+            As a result, software was often delivered too late, programs did not
+            behave as the user expected, programs were rarely adaptable to
+            changed circumstances, and many errors were detected only after the
+            software had been delivered to the customer. This became known as the
+            ‘software crisis’.
+          </li>
+
+          <li>
+            This type of problem really became manifest in the 1960s. Under the
+            auspices of NATO, two conferences were devoted to the topic in 1968
+            and 1969 .Here,
+            the term ‘software engineering’ was coined.
+          </li>
+
+          <li>
+            Shouldn’t it be possible to build software in the way one
+            builds bridges and houses, starting from a theoretical basis and
+            using sound and proven design and construction techniques, as in
+            other engineering fields?
+          </li>
+        
+        </aside>
+
+        <section>
+          <h3>Softverska kriza</h3>
+          <ul>
+            <li class="fragment">Dvije  NATO konferencije (1968. i 1969.)</li>
+            <li class="fragment">Pojam 'Software Engineering' tj. Programsko inženjerstvo</li>
+            <li class="fragment">Graditi softver kao što se grade kuće ili mostovi</li>
+          </ul>
+        </section>
+
+
+        <section>
+          <h2>Softver je skup</h2>
+          <ul >
+            <li class="fragment">~US$140 milijardi u 1985.</li>
+            <li class="fragment">~US$800 milijardi u 1998.</li>
+            <li class="fragment">Ukupan trošak = razvoj + održavanje </li>
+            <li class="fragment">Troškovi održavanja su često višestruko veći od razvoja</li>
+            <li class="fragment">Softver 80%, hardver 20%</li>
+          </ul>
+
+        </section>
+
+
+        <section>
+          <img  class="stretch" src="assets/software_cost.png" alt="" >
+          <p class="source">Source: B. W. Boehm, Software Engineering, <em>IEEE
+              Transactions on Computers, 1976</em></p>
+
+        </section>
+
+        <section>
+          <h2>Što je programsko inženjerstvo?</h2>
+          <blockquote>
+            Software engineering is the establishment and use of sound engineering
+            principles in order to obtain economically software that is reliable and
+            works efficiently on real machines.
+          </blockquote>
+          <p class="source ">Source:  
+            First NATO conference <em>Naur and Randell, 1968</em>
+          </p>
+        </section>
+
+        <section>
+          <h2>Što je programsko inženjerstvo?</h2>
+          <blockquote>
+            Software engineering is the application of a systematic, disciplined,
+            quantifiable approach to the development, operation, and maintenance
+            of software; that is, the application of engineering to software.
+          </blockquote>
+          <p class="source ">Source:  <em>IEEE Standard Glossary of Software Engineering
+              Terminology, 1990</em>
+          </p>
+        </section>
+
+        <section>
+          <h3>Programsko inženjerstvo bavi se metodama izrade velikih programa</h3>
+        </section>
+
+        <section>
+          <h3>Veliki vs. mali</h3>
+          <ul>
+            <li ><strong>programming-in-the-large</strong>
+              <ul >
+                <li class="fragment">Projekti na kojima sudjeluje više ljudi (ili čak timova)</li>
+                <li class="fragment">Duži vremenski razvoj (&gt;6 mjeseci)</li>
+              </ul>
+            </li>
+            <li ><strong>programming-in-the-small</strong>
+              <ul >
+                <li class="fragment">Mali programi</li>
+                <li class="fragment">Razvija ih jedna osoba u kratkom vremenu</li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Primjeri velikih projekata</h3>
+          <ul>
+            <li class="fragment">
+              NASA Space Shuttle software <br />
+              40M LOC
+            </li>
+            <li class="fragment">
+              Linux Kernel <br />
+              15M LOC <br />
+              <small><a href="
+                  https://unix.stackexchange.com/questions/223746/why-is-the-linux-kernel-15-million-lines-of-code"
+                  target="_blank">https://unix.stackexchange.com/questions/223746/why-is-the-linux-kernel-15-million-lines-of-code</a> </small>
+            </li>
+            <li class="fragment">IBM OS360 <br />
+            5000 čovjek-godina razvoja</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Tradicionalne tehnike</h3>
+          <ul>
+            <li class="fragment">Tradicionalne programske tehnike podržavaju
+              <em> programming-in-the-small</em></li>
+            <ul class="fragment">
+              <li>Programski jezici</li>
+              <li>Alati (npr. dijagrami toka)</li>
+              <li>Metode (npr. strukturno programiranje)</li>
+            </ul>
+            <li class="fragment">Ne mogu se direktno primjeniti na velike projekte</li>
+            <li class="fragment">
+              <strong>
+                Današnji softverski projekti su kombinacija velikog broja različitih programa i komponenti
+              </strong>
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <img src="./assets/leftpad.png" class="stretch" alt="">
+          <p class="source ">Source: 
+            <em> <a href="https://www.xkcd.com/1667" target="_blank">XKCD 1667</a> </em>
+          </p>
+          <p><a href="http://www.haneycodes.net/npm-left-pad-have-we-forgotten-how-to-program/" target="_blank"><strong> NPM leftpad fiasco </strong></a></p>
+          <p class="fragment">Not Invented Here (NIH) sindrom vs. Proudly Found Elsewhere (PFE) sindrom</p>
+          <a class="fragment" href="http://www.netokracija.com/change-konferencija-alan-pavicic-125571" target="_blank">Kada izmišljati toplu vodu, a kada koristiti tuđa rješenja</a>
+          
+          <aside class="notes">
+            <ul>
+             <li>Developer leftpad paketa za Node Package Manager se naljutio na maintainere NPM-a i povukao svoj leftpad paket bez najave</li> 
+             <li>Paket je jednostavno bio mala funkcija koja dopunjava string s lijeve strane nulama</li>
+             <li>U tom trenutku koristio ga je ogroman broj korisnika</li>
+             <li>Velik broj paketa prestao je raditi preko noći, jer su kao dependecy imali leftpad</li>
+             <li>Najpoznatiji su Babel (javascript compiler) i React (Facebookov MVC framework)</li>
+             <li>NIH vs PFE sindrom: Developeri se stalno susreću s odlukama
+               što implementirati sami, a što uzeti od drugih. Teško je
+               odrediti generalno pravilo i svaki developer to treba odrediti
+             za sebe. Ali ono s čime se svi slažu: nemoj implementirati svoju
+             kriptografiju (NIH), ali nemoj ni dodavati dependency zbog
+           leftpada stringa.</li>
+            </ul>
+          </aside>
+          
+        </section>
+
+        <section>
+          <h3>Cilj programskog inženjerstva je upravljanje kompleksnošću</h3>
+          <ul>
+            <li class="fragment">Podijeliti problem u dijelove</li>
+            <li class="fragment">Komunikacija između dijelova mora biti jednostavna</li>
+            <li class="fragment">Kompleksnost često nije intrinsična problemu</li>
+          </ul>
+
+          <aside class="notes">
+            <ul>
+
+              <li> In general, the problems are such that they cannot be surveyed
+                in their entirety.  One is forced to split the problem into parts
+                such that each individual part can be grasped, while the
+                communication between the parts remains simple.  </li>
+
+              <li> The total complexity does not decrease in this way, but it
+                does become manageable.  </li>
+
+              <li> In a stereo system there are components such as an amplifier,
+                a receiver, and a tuner, and communication via a thin wire.
+              </li>
+
+              <li> In software, we strive for a similar separation of concerns.
+              </li>
+
+              <li> In a program for library automation, components such as user
+                interaction, search processes and data storage could for instance
+                be distinguished, with clearly given facilities for data exchange
+                between those components.  </li>
+
+              <li> Note that the complexity of many a piece of software is not so
+                much caused by the intrinsic complexity of the problem (as in the
+                case of compiler optimization algorithms or numerical algorithms
+                to solve partial differential equations), but rather by the vast
+                number of details that must be dealt with.  </li>
+
+
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <h3> Software evoluira </h3>
+
+          <ul>
+            <li class="fragment">Softver modelira stvarnost </li>
+            <li class="fragment">Stvarnost evoluira</li>
+            <li class="fragment">Softver mora evoluirati zajedno sa stvarnošću</li>
+            <ul>
+              <li class="fragment">Troškovi rastu nakon isporuke softvera</li>
+            </ul>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Efikasnost razvoja je bitna  </h3>
+
+          <ul>
+
+            <li class="fragment"><strong>Programsko inženjerstvo bavi se temama
+                razvoja boljih, bržih i efikasnijih metoda razvoja i isporuke
+                softvera.</strong> </li>
+            <li class="fragment">Ukupni troškovi razvoja softvera su veliki </li>
+            <li class="fragment">Postoji sve veća potreba za softverom</li>
+            <li class="fragment">Time-to-market</li>
+            <li class="fragment">Component reuse</li>
+          </ul>
+          <aside class="notes">
+            <ul>
+              <li> Potreba za novim aplikacijama nadilazi dostupne resurse </li>
+              <li> Jaz između ponude i potražnje je sve veći</li>
+              <li> time-to-market je vrlo bitan. Zahtjeva se sve brža isporuka softvera</li>
+              <li>Posebno je bitna mogućnost ponovnog korištenja komponenti</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <h3> Ljudi su bitni </h3>
+          <ul>
+            <li class="fragment">Suradnja među ljudima je bitan dio razvoja velikih softverskih projekata</li>
+            <li class="fragment">Veliki problemi na kojima velik broj ljudi radi istovremeno</li>
+            <li class="fragment">Timovi na različitim geografskim lokacijama</li>
+            <li class="fragment">Potrebne efikasne metode kolaboracije i komunikacije</li>
+            <li class="fragment"><strong> Alati! </strong></li>
+          </ul>
+
+          <aside class="notes">
+            <ul>
+              <li>Mora postojati jasna podjela odgovornosti u razvoju velikih projekata</li>
+              <li>Potrebno je držati se tih podjela</li>
+              <li>Bitno je definirati i pridržavati se standarda i procedura</li>
+              <li>Tu puno mogu pomoći razni alati</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <h3> Software postoji radi korisnika </h3>
+          <blockquote > It is not sufficient to build the system in the right
+            way, we also have to build the right system.  </blockquote>
+          <p class="source ">Source: 
+            <em> Software Engineering: Principles and Practice, Hans Van Vliet, 2007, Wiley </em>
+          </p>
+
+          <ul>
+          <li class="fragment">Funkcionalnost softvera mora odgovarati zadacima korisnika</li>
+          <li class="fragment">Proučiti što korisnicima stvarno treba</li>
+          <li class="fragment">Odrediti ispravne funkcionalne zahtjeve</li>
+          <li class="fragment">Bitno: jednostavnost korištenja, kvaliteta, pouzdanost</li>
+          <li class="fragment"><strong>Nezadovoljstvo sustavom = zaobilaženje sustava </strong></li>
+          </ul>
+
+        </section>
+
+        <section data-background-image="./assets/healtcase_workers.jpg">
+          <div class="blackbg">
+            <h4 >  Healthcare workers prioritize helping people over information security</h4>
+            <p class="source ">Source: 
+            <em ><a href=" https://boingboing.net/2016/06/28/healthcare-workers-prioritize.html " target="_blank">https://boingboing.net/2016/06/28/healthcare-workers-prioritize.html </a> </em>
+            </p>
+          </div>
+          
+          <aside class="notes">
+            <ul>
+              <li>U bolnici su uveli proximity senzore na računalne terminale. Kada se doktor odmakne od računala terminal se zaključa. Razlog je kako ne bi doktor slučajno gledao podatke krivog pacijenta, čiji su podaci ostali otvoreni od prethodnog doktora. Doktorima se nije dalo stalno ulogiravati pa su senzor prekrili čašom od stiropora, ili bi nekom internu rekli da sjedi za kompjuterom i pritišće space u nekim intervalima, kako se terminal ne bi zaključao.</li>
+            </ul>
+          </aside>
+          
+        </section>
+
+        <section>
+          <h3> Problem  domenske ekspertize </h3>
+          <ul>
+            <li class="fragment">Softverski inženjeri su eksperti u softveru</li>
+            <li class="fragment">Nisu eksperti u upravljanju knjižnicom, avijaciji ili bankarstvu</li>
+            <li class="fragment">Nedovoljno poznavanje domene za koju rade softver</li>
+            <li class="fragment">Nepoznavanje kulture domene za koju rade softver</li >
+          </ul>
+
+         <aside class="notes">
+           <ul>
+             <li>Softveraši moraju razvijati softver za domene s kojima 
+               nisu upoznati</li>
+
+             <li> For example, a software developer may discover the ‘official’
+               set of work practices of a certain user community from
+               interviews, written policies, and the like; these work practices
+               are then built into the software.  </li>
+
+             <li> A crucial question with respect to system acceptance and
+               success, however, is whether that community actually follows
+               those work practices. For an outside observer, this question is
+             much more difficult to answer.  </li>
+           </ul>
+         </aside> 
+        </section>
+
+        <section>
+          <h3> Balansiranje zahtjeva </h3>
+          <blockquote class="fit"> Programming today is a race between software engineers striving to build bigger and better idiot-proof programs, and the Universe trying to produce bigger and better idiots. So far, the Universe is winning. </blockquote>
+          <p class="source ">Source: 
+            <em> Rick Cook, The Wizardry Compiled, 1989 </em>
+          </p>
+          <ul>
+            <li class="fragment">Zahtjevi na početku projekta nisu jedini bitan faktor</li>
+            <li class="fragment">Korisnici često ne znaju što im zapravo treba</li>
+            <li class="fragment">Korisnici često ne znaju prioritetizirati zahtjeve</li>
+            <li class="fragment">Česta poslovna, politička i tehnička ograničenja</li>
+          </ul>
+          
+          <aside class="notes">
+            <ul>
+              <li>  There are numerous business, technical and political
+                constraints that may influence a software development project.
+                For example, one may decide to use database technology X rather
+                than Y, simply because of available expertise with that
+                technology. In extreme cases, characteristics of available
+                components may determine functionality offered, rather than the
+              other way around.  </li>
+            </ul>
+          </aside>
+          
+        </section>
+
+        <section>
+          <h3> Software Engineering != Programming </h3>
+          <ul>
+            <li class="fragment">Programiranje je bitan dio inženjeringa softvera</li>
+            <li class="fragment">Ali nije jedini </li>
+            <ul>
+              <li class="fragment">Matematički aspekti == ispravan proizvod</li>
+              <li class="fragment">Dobre inženjerske prakse == koristan proizvod</li>
+              <li class="fragment">Psihološki i sociološki aspekti</li>
+              <li class="fragment">Kontrola razvojnog procesa == Menađment</li>
+            </ul>
+          </ul>
+        </section>
+
+        <section>
+          <h3> Softver se razlikuje od fizičkih proizvoda </h3>
+          <ul>
+            <li >Fizički proizvodi: <br />
+              <ul>
+                <li class="fragment">Većina troškova tijekom proizvodnje</li>
+                <li class="fragment">Troše se zbog upotrebe i treba ih održavati</li>
+              </ul>
+            </li>
+            <li>Softver: <br />
+              <ul>
+                <li  class="fragment" >Kopiranje softvera je trivijalno</li>
+                <li class="fragment">Ne troši se zbog upotrebe</li>
+                <li  class="fragment" >Većina troška je u fazi razvoja</li>
+                <li  class="fragment" >Održavanje softvera je potrebno zbog: <br />
+                  <ul>
+                    <li class="fragment">Kasno otkrivenih grešaka</li>
+                    <li class="fragment">Promjene korisničkih zahtjeva</li>
+                    <li class="fragment">Promjena platforme (hardver ili OS)</li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+
+        <section data-background-image="./assets/maintenance.jpg" data-state="dim">
+          <blockquote class="blackbg">
+            We may even argue that software wears out <strong> because</strong> it is being maintained.
+          </blockquote>
+          <p class="source blackbg">Source: 
+            <em> Software Engineering: Principles and Practice, 
+              Hans Van Vliet, 2007, Wiley </em>
+          </p>
+        </section>
+
+        <section>
+          <h1> Faze razvoja softvera </h1>
+        </section>
+
+        <section>
+          <h3>Model procesa razvoja softvera</h3>
+
+          <img class="stretch" src="./assets/software_phases.png" alt="" />
+
+          <p class="source ">Source: 
+            <em> Software Engineering: Principles and Practice, 
+              Hans Van Vliet, 2007, Wiley </em>
+          </p>
+        </section>
+
+        <section data-background-image="./assets/requirements.jpeg" data-state="dim" >
+          <h3 class="blackbg">Inženjering zahtjeva </h3>
+          <h4 class="blackbg">(Requirements Engineering)</h4>
+
+          <ul class="">
+            <li class="fragment blackbg">Prikupiti cjelovite podatke o <strong style="color: red"> problemu</strong> kojeg treba riješiti:
+              <ul>
+                <li class="fragment blackbg">Funkcionalnosti željenog softvera</li>
+                <li class="fragment blackbg">Moguće buduće nadogradnje</li>
+                <li class="fragment blackbg">Količina i tip dokumentacije</li>
+                <li class="fragment blackbg">Zahtjevi na performanse sustava</li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+
+        <section data-background-image="./assets/requirements.jpeg" data-state="dim">
+          <h3 class="blackbg"> Inženjering zahtjeva </h3>
+          <ul class="">
+            <li class="fragment blackbg">Prikupiti cjelovite podatke o <strong style="color: red"> okruženju</strong> u kojem će sustav funkcionirati:
+              <ul>
+                <li class="fragment blackbg">Hardver</li>
+                <li class="fragment blackbg">Dodatan korišteni softver</li>
+                <li class="fragment blackbg">Broj korisnika</li>
+                <li class="fragment blackbg">Dodatna ograničenja zbog budućeg planiranog hardvera ili softvera</li>
+              </ul>
+            </li>
+            <li class="fragment blackbg">Studija izvedivosti (engl. Feasibility Study)</li>
+            <li class="fragment blackbg"><strong>Specifikacija zahtjeva</strong> (engl. Requirements specification)</li>
+          </ul>
+        </section>
+        
+        <section data-background-image="./assets/design.jpeg" data-state="dim">
+          <h3 class="blackbg"> Dizajn </h3>
+          
+          <ul class="">
+            <li class="fragment blackbg">Izrada modela cijelog sustava</li>
+            <li class="fragment blackbg">Rastav problema na komponente</li>
+            <li class="fragment blackbg">Precizna sučelja (<em>engl.</em> Interfaces) među komponentama</li>
+            <li class="fragment blackbg">Često se smatra dosadnim uvodom u programiranje  </li>
+            <li class="fragment blackbg"><strong>Vrlo bitna faza</strong> - utječe na kvalitetu konačnog rješenja</li>
+            <li class="fragment blackbg">Globalan opis sustava - <strong>arhitektura sustava</strong></li>
+            <li class="fragment blackbg"><strong>Što</strong>, a ne <strong>kako</strong></li>
+            <li class="fragment blackbg">Rezultat faze je <strong>tehnička specifikacija sustava</strong></li>
+          </ul>
+        </section>
+
+
+
+        <section data-background-image="./assets/source_code.png" data-state="dim-low">
+          <h3 class="blackbg"> Implementacija </h3>
+          <ul class="">
+            <li class="fragment blackbg">Tek sada počinje programiranje</li>
+            <li class="fragment blackbg">Razvoj pojedinačnih komponenti prema tehničkoj specifikaciji</li>
+            <li class="fragment blackbg">Zadatak programera - izraditi program koji je 
+              <ul>
+                <li class="fragment blackbg">dokumentiran</li>
+                <li class="fragment blackbg">pouzdan</li>
+                <li class="fragment blackbg">ispravan</li>
+                <li class="fragment blackbg">fleksibilan</li>
+              </ul>
+            </li>
+            <li class="fragment blackbg">Rezultat faze je <strong>izvršni program</strong></li>
+          </ul>
+        </section>
+
+
+        <section data-background-image="./assets/testing.jpeg" data-state="dim">
+          <h3 class="blackbg"> Testiranje </h3>
+          <ul class="">
+            <li class="fragment blackbg">Pogrešno se navodi kao faza nakon implementacije</li>
+            <li class="fragment blackbg">Obratiti pažnju na testiranje tijekom svih faza </li>
+            <li class="fragment blackbg">Pogotovo tijekom implementacije </li>
+            <li class="fragment blackbg">Metode testiranja često utječu na samu implementaciju</li>
+            <li class="fragment blackbg">Verifikacija i validacija</li>
+          </ul>
+
+          <aside class="notes">
+            <ul >
+              <li>Potrebno testirati i same faze razvoja </li>
+              <li>verifikacija- provjera ispravnosti tranzicija između faza razvoja </li>
+              <li>validacija - provjera ispravnosti glede ispunjavanja korisničkih zahtjeva</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section data-background-image="./assets/maintenance.jpg" data-state="dim">
+          <h3 class="blackbg"> Održavanje </h3>
+          <ul>
+            <li class="fragment blackbg">Ispravljanje grešaka koje su promakle tijekom faze implementacije</li>
+            <li class="fragment blackbg">Novi korisnički zahtjevi i nadogradnje</li>
+            <li class="fragment blackbg">Obuhvaća sve aktivnosti potrebne kako bi softver ostao funkcionalan nakon isporuke klijentu</li>
+            
+          </ul>
+        </section>
+
+        <section data-background-image="./assets/management.jpeg" data-state="dim">
+          <h3 class="blackbg">  Menađment projekta </h3>
+          <ul>
+            <li class="fragment blackbg">Osigurava isporuku softvera na vrijeme i unutar zadanog budžeta</li>
+            <li class="fragment blackbg">Planiranje projekta</li>
+            <li class="fragment blackbg">Organizacija tima</li>
+            <li class="fragment blackbg">Scheduling</li>
+            <li class="fragment blackbg">Koordinacija svih faza projekta</li>
+          </ul>
+        </section>
+
+        <section data-background-image="./assets/documentation.jpeg" data-state="dim">
+          <h3 class="blackbg"> Dokumentacija </h3>
+          <blockquote class="blackbg fit">  Documentation is like sex; when it's good, it's very, very good, and when it's bad, it's better than nothing.</blockquote>
+          <p class="source blackbg ">Source:
+            <em> Dick Brandon </em>
+          </p>
+          <ul>
+            <li class="fragment blackbg">Često se zanemaruje</li>
+            <li class="fragment blackbg">Treba započeti u ranim fazama</li>
+            <li class="fragment blackbg">Vrlo je bitna tijekom održavanja </li>
+            <li class="fragment blackbg">Sistemska i korisnička dokumentacija</li>
+          </ul>
+
+          <aside class="notes">
+            <ul>
+              <li>Sistemska: 
+                <ul>
+                  <li>plan projekta</li>
+                  <li>plan osiguranja kvalitete</li>
+                  <li>specifikacija zahtjeva</li>
+                  <li>opis arhitekture</li>
+                  <li>dokumentacija dizajna</li>
+                  <li>plan testiranja</li>
+                </ul>
+              </li>
+              <li> Korisnička:
+                <ul>
+                  <li>detaljni user manuali koji pomažu korisnicima obaviti zadatke</li>
+                  <li>poanta nije opisati mogućnosti sustava, već pomoći korisnicima u obavljanju zadataka</li>
+                  
+                </ul>
+              </li>
+            </ul>
+          </aside>
+        </section>
+        
+        <section>
+          <h3> Održavanje ili evolucija </h3>
+          <blockquote>Computer science is the only discipline in which we view adding a new wing to a building as being maintenance.</blockquote>
+          <p class="source "> 
+            <em> Jim Horning </em>
+          </p>
+          <ul>
+            <li class="fragment">Tijekom životnog vijeka softvera više novca se potroši na održavanje nego na  početni razvoj</li>
+            <li class="fragment">4 tipa aktivnosti održavanja softvera:
+              <ul>
+                <li class="fragment">Korektivno održavanje</li>
+                <li class="fragment">Adaptivno održavanje</li>
+                <li class="fragment">Perfektivno održavanje</li>
+                <li class="fragment">Preventivno održavanje</li>
+              </ul>
+            </li>
+          </ul>
+          
+          <aside class="notes">
+            <ul>
+              <li>
+                – corrective maintenance -- the repair of actual errors;
+              </li>
+              <li>
+                – adaptive maintenance -- adapting the software to changes in
+                the environment, such as new hardware or the next release of an
+                operating or database system;
+              </li>
+              <li>
+                – perfective maintenance -- adapting the software to new or
+                changed user requirements, such as extra functions to be
+                provided by the system. Perfective maintenance also includes
+                work to increase the system’s performance or to enhance its
+                user interface;
+              </li>
+              <li>
+                – preventive maintenance -- increasing the system’s future
+                maintainability.  Updating documentation, adding comments, or
+                improving the modular struc- ture of a system are examples of
+                preventive maintenance activities.  
+              </li>
+            </ul>
+
+          </aside>
+        </section>
+
+        <section>
+          <h1>Horror priče  </h1>
+        </section>
+
+        <section>
+          <h3> Ariane 5, Flight 501  </h3>
+          <iframe src=" https://www.youtube.com/embed/kYUrqdUyEpI" frameborder="0" data-autoplay class="stretch "></iframe>
+        </section>
+
+        <section>
+          <h3> Ariane 5, Flight 501  </h3>
+          <ul>
+            <li class="fragment">Eksplodirala oko 40s nakon lansiranja, na visini od oko 3.5km </li>
+            <li class="fragment">500M dolara štete</li>
+            <li class="fragment">Overflow pri konverziji 64-bit floata u 16-bit unsigned int</li>
+            <li class="fragment">Bug u softveru Inertial Reference Systema (SRI)</li>
+            <li class="fragment"> Više kuteva gledanja
+              <ul>
+                <li class="fragment">Softverski problem - mogao se otkriti uz detaljnije testiranje</li>
+                <li class="fragment">Hardverski problem - korištenje neodgovarajuće komponente</li>
+                <li class="fragment">Problem dizajna - filozofija dizajna hardvera </li>
+              </ul>
+            </li>
+          </ul>
+          <aside class="notes">
+            <ul>
+              <li>softverski problem - pomoglo bi više simulacija </li>
+              <li>hardverski problem - SRI sustav je od početka imao tu grešku, ali kako Ariane 4 ne postiže takve brzine kao Ariane 5, problem nikad nije primjećen. Korištenje komponenete u jednom okruženju ne garantira uspješno korištenje u nekom drugom okruženju.</li>
+              <li>Problem dizajna - Filozofija dizajna hardvera kaže da se komponente mogu pokvariti bez razloga i stavlja se backup komponenta. Obje komponente su identične i imale su istu softversku grešku. U slučaju greške u softveru identična backup komponenta nema puno svrhe. </li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <h1> Etika programskog inženjerstva </h1>
+        </section>
+
+        <section>
+            <h3>  Software Engineering Code of Ethics</h3> 
+          <img src="./assets/dilbert_ethics.png" class="stretch">
+          <ul>
+            <li class="fragment">IEEE Computer Society + ACM </li>
+            <li class="fragment"><a href=" https://www.computer.org/web/education/code-of-ethics" target="_blank">Link na dokument</a></li>
+            <li class="fragment">Osam glavnih principa</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3> 
+            1. Public
+          </h3>
+          <blockquote>
+            Software engineers shall act consistently with the public
+            interest
+          </blockquote>
+        </section>
+
+        <section>
+          <h3> 
+            2. Client and employer
+          </h3>
+          <blockquote>
+            Software engineers shall act in a manner that
+            is in the best interests of their client and employer consistent with
+            the public interest
+          </blockquote>
+        </section>
+
+        <section>
+          <h3> 
+            3. Product
+          </h3>
+          <blockquote>
+            Software engineers shall ensure that their products and
+            related modifications meet the highest professional standards
+            possible
+          </blockquote>
+        </section>
+
+        <section>
+          <h3> 
+            4. Judgment
+          </h3>
+          <blockquote>
+            Software engineers shall maintain integrity and
+            independence in their professional judgment
+          </blockquote>
+        </section>
+
+        <section>
+          <h3> 
+            5. Management
+          </h3>
+          <blockquote>
+            Software engineering managers and leaders shall
+            subscribe to and promote an ethical approach to the management of
+            software development and maintenance
+          </blockquote>
+        </section>
+
+        <section>
+          <h3> 
+            6. Profession
+          </h3>
+          <blockquote>
+            Software engineers shall advance the integrity and
+            reputation of the profession consistent with the public interest
+          </blockquote>
+        </section>
+
+        <section>
+          <h3> 
+            7. Colleagues
+          </h3>
+          <blockquote>
+            Software engineers shall be fair to and supportive of
+            their colleagues
+          </blockquote>
+        </section>
+
+        <section>
+          <h3> 
+            8. Self
+          </h3>
+          <blockquote>
+            Software engineers shall participate in lifelong learning
+            regarding the practice of their profession and shall promote an
+            ethical approach to the practice of the profession
+          </blockquote>
+        </section>
+
+        <section>
+          <h3> Zaključak </h3>
+          
+          <ul>
+            <li class="fragment">Veličina i cijena softverskih projekata kontinuirano raste</li>
+            <li class="fragment">Softverska kriza javila se zbog neadekvatnih metoda razvoja velikih softvera</li>
+            <li class="fragment">Programsko inženjerstvo bavi se istraživanjem boljih, bržih i efikasnijih metoda razvoja i isporuke softvera</li>
+            <li class="fragment">Nije isto što i programiranje, ali je programiranje bitan dio </li>
+            <li class="fragment">Uključuje i psihološke i sociološke aspekte</li>
+            <li class="fragment">Softverski inženjeri trebaju se ponašati etično</li>
+          </ul>
+          
+        </section>
+
+        <section id="attribution">
+          <h3> Background images attribution </h3>
+          
+          <div class="img-source">
+           <a href="https://www.flickr.com/photos/isherwoodchris/6774558732">
+             <img src="./assets/maintenance.jpg" alt="" >
+           </a>
+             <p>Source: 
+               <em> Help from Mr Handyman (2 of 3), Chris Isherwood, CC-BY-SA </em>
+             </p>
+          </div>
+
+          <div class="img-source">
+            <a src=" https://media.glassdoor.com/l/28/2d/5f/9c/open-space-office.jpg " href="">
+              <img src="https://media.glassdoor.com/l/28/2d/5f/9c/open-space-office.jpg " alt="">
+            </a>
+              <p>Source: https://media.glassdoor.com/l/28/2d/5f/9c/open-space-office.jpg</p>
+          </div>
+
+          <div class="img-source">
+            <img src="./assets/two_women_operating_ENIAC.gif" alt=" ">
+            <p>
+          Source: By United States Army (Image from [1]) [Public domain], via Wikimedia Commons}"
+            </p>
+          </div>
+
+
+
+        </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			</div>
+		</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback:
+            function() { hljs.initHighlightingOnLoad(); } },
+          { src: './plugin/chart/Chart.min.js' },
+          { src: './plugin/chart/csv2chart.js' },
+          { src: './plugin/fullscreen/fullscreen.js' },
+          { src: './plugin/menu/menu.js'}
+
+        ],
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1024,
+        height: 768,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.05,
+
+        transition: 'convex'
+
+      });
+
+      // Shows the slide number using default formatting
+      Reveal.configure({ slideNumber: true });
+
+      // Slide number formatting can be configured using these variables:
+      //  "h.v": 	horizontal . vertical slide number (default)
+      //  "h/v": 	horizontal / vertical slide number
+      //    "c": 	flattened slide number
+      //  "c/t": 	flattened slide number / total slides
+      Reveal.configure({ slideNumber: 'c/t' });
+
+      // Control which views the slide number displays on using the "showSlideNumber" value:
+      //     "all": show on all views (default)
+      // "speaker": only show slide numbers on speaker notes view
+      //   "print": only show slide numbers when printing to PDF
+      Reveal.configure({ showSlideNumber: 'all' });
+
+
+		</script>
+	</body>
+</html>
