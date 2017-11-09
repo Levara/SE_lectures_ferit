@@ -50,6 +50,16 @@ html.dim-low .backgrounds {
   color: #999;
   z-index: 1000;
 }
+.reveal .index {
+  position: absolute;
+  top: 2.5em;
+  left: 2%;
+  text-align: left;
+  font-size: 0.35em;
+  /*background-color: rgba(0,0,0,0.9);*/
+  color: #999;
+  z-index: 1000;
+}
 
 .reveal .img-source {
   width: 23%;

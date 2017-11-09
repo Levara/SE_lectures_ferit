@@ -43,19 +43,17 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
           </p>
         </section>
 
-        <section data-background-image="./assets/matrix.jpg" data-state="dim">
-          <h3>
-            Software Engineering
-          </br>
-          Programsko inženjerstvo
-          </h3>
-          <div style="float: left; width: 33%; height: 100px; text-align:center; vetical-align: middle;">
+        <section id="linkovi" data-background-image="./assets/matrix.jpg" data-state="dim">
+          <h4>Linkovi na predavanja</h4>
 
-            <small> <a href="/lecture1a.html">Lecture 1a - Introduction to Software Engineering </a></small> </div>
           <div style="float: left; width: 33%; height: 100px; text-align:center; vetical-align: middle;">
-            <small> <a href="/lecture1b.html">Lecture 1b - Clean Code </a></small> </div>
+            <small> <a href="/lecture1a.html">Lecture 1a - Introduction to Software Engineering </a></small> 
+          </div>
           <div style="float: left; width: 33%; height: 100px; text-align:center; vetical-align: middle;">
-            <small> <a href="/lecture1b.html">Lecture 1b - Clean Code </a></small> </div>
+            <small> <a href="/lecture1b.html">Lecture 1b - Clean Code </a></small>
+          </div> 
+          <!--<div style="float: left; width: 33%; height: 100px; text-align:center; vetical-align: middle;">-->
+            <!--<small> <a href="/lecture1b.html">Lecture 1b - Clean Code </a></small> </div>-->
           <!--<div style="float: left; width: 33%; height: 100px; text-align:center; vetical-align: middle;">-->
             <!--<small> <a href="/lecture1b.html">Lecture 1b - Clean Code </a></small> </div>-->
           <!--<div style="float: left; width: 33%; height: 100px; text-align:center; vetical-align: middle;">-->
@@ -85,15 +83,15 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
         </section>
 
         <section>
-          <h2>Literature</h2>
+          <h2>Literatura</h2>
           <ol>
             <li class="fragment"><strong>
               Software Engineering: Pinciples and Practice <br />
               </strong>
               <small>Hans van Vliet, Wiley, 2007</small>
             </li>
-            <li class="fragment">Python Testing with unittest, nose, pytest <br />
-              <small>B. Okken, Leanpub, 2014</small>
+            <li class="fragment">Python Testing with pytest <br /> 
+              <small>B. Okken, Pragmatic Programmer, 2017, <a href=" https://pragprog.com/book/bopytest/python-testing-with-pytest" target="_blank">link</a></small>
             </li>
             <li class="fragment">Uvod u Git, <br />
               <small>T. Krajina, (free), <a
@@ -109,53 +107,110 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
           </ol>
         </section>
 
-
         <section>
-          <h2>Curriculum </h2>
-          <strong>Lecture 1a: Introduction to software engineering</strong> 
-          <br />
+          <h3> Nastavnici </h3>
           <ul>
-            <li class="fragment">What is Software Engineering</li>
-            <li class="fragment">What is Software</li>
-            <li class="fragment">Phases in the Development of Software</li>
-            <li class="fragment">Examples of failed projects</li>
-            <li class="fragment">Software Engineering Ethics</li>
+            <li class="fragment">Nositelj predmeta: 
+              <ul>
+                <li class="fragment">izv.prof.dr.sc. Irena Galić
+                  <ul>
+                    <li class="fragment"> 
+                      <code class=" inline"> irena.galic@ferit.hr </code>
+                    </li>
+                    <li class="fragment">Konzultacije po dogovoru, putem maila</li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li class="fragment">Suradnik: 
+              <ul>
+                <li class="fragment">Hrvoje Leventić
+                  <ul>
+                    <li class="fragment">
+                      <code class=" inline">hrvoje.leventic@ferit.hr</code>
+                    </li>
+                    <li class="fragment">Konzultacije po dogovoru, putem maila</li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            
           </ul>
         </section>
 
         <section>
-          <h2>Curriculum </h2>
-          <strong>Lecture 1b: Clean code</strong> 
+          <h3> Opis kolegija </h3>
+          <ul>
+            <li class="fragment">Kolegij daje uvod u područje programskog inženjerstva</li>
+            <li class="fragment">Ciljevi kolegija:
+              <ul>
+                <li class="fragment">
+                  predstaviti rješenja za probleme koji se javljaju pri izradi
+                  kompleksnih softverskih sustava
+                </li>
+                <li class="fragment">
+                  predstaviti dobre prakse pri pisanju programskog koda
+                </li>
+                <li class="fragment">
+                  predstaviti važnost pisanja održivog programskog koda
+                </li>
+              </ul>
+            </li>
+            <li class="fragment">
+              Na laboratijskim vježbama obradit će se programski jezik Python
+              te će se kroz rješavanja zadataka na LV demonstrirati dobre
+              prakse u pisanju koda
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Curriculum <br />Sadržaj kolegija  </h2>
+        </section>
+
+        <section>
+          <h4>Predavanje 1a: Uvod u programsko inženjerstvo (2h)</h4> 
+          <br />
+          <ul>
+            <li class="fragment">Što je programsko inženjerstvo</li>
+            <li class="fragment">Zašto programsko inženjerstvo</li>
+            <li class="fragment">Faze u razvoju softverskih projekata</li>
+            <li class="fragment">Primjeri propalih projekata</li>
+            <li class="fragment">Etika softverskog inženjerstva</li>
+          </ul>
+        </section>
+
+        <section>
+          <h4>Predavanje 1b: Clean code (2h)</h4> 
           <br />
 
           <ul>
-            <li class="fragment">Commenting</li>
-            <li class="fragment">Coding conventions</li>
-            <li class="fragment">TODO:</li>
+            <li class="fragment"> Što je <em>čist kod</em>    </li>
+            <li class="fragment"> Karakteristike čistog koda    </li>
+            <li class="fragment"> <em>Coding</em> standardi</li>
+            <li class="fragment"> Najčešće preporuke    </li>
           </ul>
         </section>
 
 
         <section>
-          <h2>Curriculum </h2>
-          <strong>Lecture 2: Source code versioning</strong>
+          <h4>Predavanje 2: Verzioniranje izvornog koda (4h)</h4>
           <br />
           <ul>
-            <li class="fragment">What is source code versioning</li>
-            <li class="fragment">Version control systems</li>
+            <li class="fragment">Što je verzioniranje izvornog koda</li>
+            <li class="fragment">Version control sustavi</li>
             <li class="fragment">Git</li>
             <li class="fragment">Git flow</li>
             <li class="fragment">More Git</li>
-            <li class="fragment">Github</li>
-
+            <li class="fragment">Github and friends</li>
           </ul>
         </section>
 
         <section>
-          <h2>Curriculum </h2>
-          <strong>Lecture 3: Software development methods</strong>
+          <h4>Predavanje 3a: Metode razvoja softvera (2h)</h4>
           <br />
           <ul>
+            <li class="fragment">Životni cikuls softvera</li>
             <li class="fragment">The Waterfall Model</li>
             <li class="fragment">Agile Methods:
               <ul>
@@ -170,10 +225,134 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
         </section>
 
         <section>
-          <h2>Curriculum </h2>
-          <strong>Lecture 4a: </strong>
+          <h4>Predavanje 3b: Requirements Engineering (2h)</h4>
           <br />
-          <h1>TODO</h1>
+          <ul>
+            <li class="fragment">Prikupljanje zahtjeva</li>
+            <li class="fragment">Dokumentacija i menadžement zahtjeva</li>
+            <li class="fragment">Tehnike specifikacije zahtjeva</li>
+            <li class="fragment">Verifikacija i validacija</li>
+          </ul>
+        </section>
+
+        <section>
+          <h4>Predavanje 4a: Uvod u testiranje softvera(2h)</h4>
+          <ul>
+            <li class="fragment">Pregled metoda testiranja softvera</li>
+            <li class="fragment">Uvod u Unit testing</li>
+            <li class="fragment">Kratki uvod u Test Driven Development (TDD)</li>
+          </ul>
+        </section>
+
+        <section>
+          <h4>Predavanje 4b: Modeliranje softvera (2h)</h4>
+          <ul>
+            <li class="fragment">Klasične tehnike modeliranja</li>
+            <li class="fragment">Objekti</li>
+            <li class="fragment">UML</li>
+          </ul>
+        </section>
+
+        <section>
+          <h4>Predavanje 5a: Arhitektura softvera (2h) </h4>
+          <ul>
+            <li class="fragment">Poveznica sa životnim ciklusom softvera</li>
+            <li class="fragment">Dizajn arhitekture softvera</li>
+            <li class="fragment">Načela i stilovi arhitekture</li>
+          </ul>
+        </section>
+
+
+        <section>
+          <h4>Predavanje 5b: Organizacija i upravljanje timom (2h)</h4>
+          <ul>
+            <li class="fragment">Upravljanje ljudima</li>
+            <li class="fragment">Principi organizacije tima</li>
+            <li class="fragment">Alati za kolaboraciju</li>
+            <li class="fragment"> Gost predavač iz industrije: <br />
+              <strong><em>Alati za koordinaciju tima</em>, 
+                Boris Rauš, BambooLab 
+              </strong>
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h4>Predavanje 6: Software Design (4h)</h4>
+          <ul>
+            <li class="fragment">Design considerations
+              <ul>
+                <li class="fra  gment">Apstrakcija</li>
+                <li class="fra  gment">Modularnost</li>
+                <li class="fra  gment">Skrivanje informacija</li>
+                <li class="fra  gment">Kompleksnost</li>
+                <li class="fra  gment">Struktura sustava</li>
+                <li class="fra  gment">Objektno-orijentirane metrike</li>
+              </ul>
+            </li>
+            <li class="fragment">Klasične metode dizajna softvera</li>
+            <li class="fragment">Metode Objektno-orijentirane analize i dizajna</li>
+            <li class="fragment"> Kako odabrati dizajn metodu?</li>
+            <li class="fragment">Desing Patterns</li>
+            <li class="fragment">Dokumentiranje dizajna sustava</li>
+            <li class="fragment">Verifikacija i validacija</li>
+          </ul>
+        </section>
+
+        <section>
+          <h4>Predavanje 7: Testiranje^2 (4h)</h4>
+          <ul>
+            <li class="fragment">Test Driven Development (TDD) revisited</li>
+            <li class="fragment">Behaviour Driven Development (BDD)</li>
+            <li class="fragment">Testiranje grafičkog sučelja: <br />
+              Gost predavač iz industrije: <br />
+              <strong><em>UI Automatizacija i testiranje uz Selenium</em>, 
+                Vlatko Vlahek, Prototyp
+              </strong>
+            </li>
+            <li class="fragment">Integracijsko testiranje: <br />
+              Gost predavač iz industrije: <br />
+              <strong><em>Integracijsko testiranje</em>, 
+                Ivan Kvolik, Gideon Brothers
+              </strong>
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h4>Predavanje 8a: Continous Integration and Deployment (1h) </h4>
+          <ul>
+            <li class="fragment">Kontinuirana integracija</li>
+            <li class="fragment">Kontinuirana objava</li>
+          </ul>
+        </section>
+
+        <section>
+          <h4>Predavanje 8b: Autorska prava i licence (1h) </h4>
+          <ul>
+            <li class="fragment">Uvod u copyright</li>
+            <li class="fragment">Autorska prava u razvoju softvera</li>
+            <li class="fragment">Licence otvorenog koda</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3> Oblici provođenja nastave </h3>
+          <ul>
+            <li class="fragment">Predavanja 30 sati</li>
+            <li class="fragment">Laboratorijske vježbe 30 sati</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3> Uvjeti za polaganje kolegija </h3>
+          <ul>
+            <li class="fragment">Pohađanje nastave &gt; 70% (10% ocjene)</li>
+            <li class="fragment">Rješavanje zadataka na LV (30% ocjene)</li>
+            <li class="fragment">Rješavanje projektnog zadatka (30% ocjene)</li>
+            <li class="fragment">Usmeni ispit (30% ocjene)</li>
+          </ul>
+          <p><a href="#linkovi" target="_blank">Natrag na popis predavanja</a></p>
         </section>
 
       </div>
