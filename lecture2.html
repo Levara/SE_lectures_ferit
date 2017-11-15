@@ -1,0 +1,558 @@
+
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Software Engineering - Lecture 2</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/night.css" id="theme">
+    <link rel="stylesheet" href="css/levara.css" >
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/xcode.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+      <div class="index">
+        <a href="./index.html" target="_blank">Nazad na index</a>
+      </div>
+      <div class="header">
+        Software Engineering course @ FERIT Osijek. <a href="#attribution">Attribution for background images</a>
+      </div>
+      
+
+			<div class="slides">
+
+        <section data-background-image="./assets/matrix.jpg" data-state="dim">
+          <h3>
+            Software Engineering
+            </br>
+            Programsko inženjerstvo
+          </h3>
+          <p>
+          Izv.prof.dr.sc. Irena Galić <br />
+          Hrvoje Leventić
+          </p>
+        </section>
+
+
+
+
+        <section>
+          <h1>Predavanje 2</h1>
+          <h2>Verzioniranje izvornog koda</h2>
+        </section>
+
+        <section>
+          <h2>Sadržaj</h2>
+          <ul>
+            <li class="fragment">Što je verzioniranje</li>
+            <li class="fragment">Što je git</li>
+            <li class="fragment">Semantičko verzioniranje</li>
+            <li class="fragment">Primjeri git repozitorija</li>
+            <li class="fragment">github</li>
+          </ul>
+          <p class="source ">Ovo predavanje u velikom dijelu prati knjigu: <br /> 
+            <em>Tomo Krajina, Uvod u Git, <a href="https://tkrajina.github.io/uvod-u-git/git.pdf" target="_blank">github link</a>  </em> <br />
+            dostupno pod CC-BY-SA 3.0 licencom
+          </p>
+        </section>
+
+        <section>
+          <h3>Što je verzioniranje  </h3>
+          <blockquote>
+            [Version control] is the management of changes to documents, computer programs, large
+            web sites, and other collections of information.
+          </blockquote>
+          <p class="source ">Source: 
+            <em> Wikipedia: Version control </em>
+          </p>
+          <ul>
+            <li class="fragment">Ne odnosi se samo na softver (npr. izdanja knjiga)</li>
+            <li class="fragment">Brojčani ili slovni kod (revizija)</li>
+            <li class="fragment">Vremenska oznaka + osoba</li>
+            <li class="fragment">Postaje jako bitno razvojem računarstva</li>
+            <li class="fragment">Najnapredniji sustavi za verzioniranje su oni za razvoj softvera</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3> Sustavi za verzioniranje </h3>
+          <p><strong>engl. Version control systems (VCS)</strong></p>
+          <ul>
+            <li class="fragment">Najčešće su samostojeće aplikacije</li>
+            <li class="fragment">Nalaze se i ugrađene u razne druge aplikacija:
+              <ul>
+                <li class="fragment">Tekstualni procesori</li>
+                <li class="fragment"><em>Spreadsheetovi</em></li>
+                <li class="fragment">Sustavi za upravljanje sadržajem (CMS)</li>
+                <li class="fragment">Kolaborativni web dokumenti</li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <img src="./assets/rev_wiki.png" class="stretch" alt=""/>
+        </section>
+
+        <section>
+          <img src="./assets/rev_gdocs.png" class="stretch" alt=""/>
+        </section>
+
+        <section>
+          <h3>Primjena u programskom inženjerstvu  </h3>
+          <blockquote>
+            In computer software engineering, revision control is any kind of
+            practice that tracks and provides control over changes to source
+            code.
+          </blockquote>
+          <p class="source ">Source: 
+            <em> Wikipedia: Version control </em>
+          </p>
+          <ul>
+            <li class="fragment">Neozaobilan za velike projekte</li>
+            <li class="fragment">Može služiti i za dokumentaciju i konfiguraciju</li>
+            <li class="fragment">Više verzija softvera "vani"</li>
+            <li class="fragment">Greške često prisutne samo u određenim verzijama</li>
+            <li class="fragment">Omogućuje kolaboraciju</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3> Struktura </h3>
+          <ul>
+            <li class="fragment">Praćenje promjena na individualnim dijelovima (npr. datoteke) <br />
+              <ul>
+                <li class="fragment">Intuitivnije, ali uzrokuje probleme</li>
+                <li class="fragment"><em>renaming, splitting, merging</em></li>
+              </ul>
+            </li>
+            <li class="fragment">Tretiranje promjena kao cjeline <br />
+              <ul>
+                <li class="fragment">Manje intuitivno</li>
+                <li class="fragment">Olakšava praćenje kompleksnih promjena</li>
+              </ul>
+            </li>
+            <li class="fragment">Centralizirani</li>
+            <li class="fragment">Decentralizirani</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3> Struktura grafa </h3>
+          <img src="./assets/graph_tree.png" alt=""/>
+          <p class="source ">Source: 
+            <em> https://stackoverflow.com/questions/40873964/github-network-graph-not-displaying-correctly </em>
+          </p>
+          <ul>
+            <li class="fragment"><em>trunk</em>,
+            <em>branches</em>,
+            <em>tags</em>,
+            <em>HEAD</em></li>
+            <li class="fragment">Ne mora imati samo jedan <em>root</em></li>
+          </ul>
+        </section>
+
+        <section>
+          <h3> Terminologija </h3>
+          <ul>
+            <li class="fragment"><em>check-out</em></li>
+            <li class="fragment"><em>check-in</em> | <em>commit</em></li>
+            <li class="fragment"><em>working copy</em></li>
+            <li class="fragment"><em>file locking</em></li>
+            <li class="fragment"><em>remote</em></li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Tradicionalni VCS  </h3>
+          <ul>
+            <li class="fragment">Centralizirani</li>
+            <li class="fragment">Klijent-server model</li>
+            <li class="fragment">Najčešće jedan repozitorij</li>
+            <li class="fragment"><em>Atomic operations</em></li>
+            <li class="fragment"><em>File locking</em></li>
+            <li class="fragment"><em>Version merging</em>
+              <ul>
+                <li class="fragment">Istovremeno uređivanje</li>
+                <li class="fragment">Tekstualne datoteke vs. <em>binary</em></li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h3> Distribuirani VCS </h3>
+          <ul>
+            <li class="fragment"><em>Distributed revision control systems (DRCS)</em></li>
+            <li class="fragment"><em>peer-to-peer</em></li>
+            <li class="fragment">Svaka radna kopija je cjeloviti repozitorij</li>
+            <li class="fragment">Razmjena <em>patcheva</em></li>
+            <li class="fragment">Brze lokalne operacije (<em>commit</em>, pregled povjesti ili vraćanje promjena)</li>
+            <li class="fragment">Komunikacija potrebna samo za sinkronizaciju</li>
+            <li class="fragment">Svaka radna kopija je efektivno backup</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3> Najpoznatiji VCS-ovi </h3>
+          <ul>
+            <li class="fragment">Centralizirani
+              <ul>
+                <li class="fragment">Concurent Versions System (CVS)</li>
+                <li class="fragment">SubVersion (SVN)</li>
+              </ul>
+            </li>
+            <li class="fragment">Distribuirani
+            <ul>
+              <li class="fragment">BitKeeper</li>
+              <li class="fragment"><strong>git</strong></li>
+              <li class="fragment">Mercurial</li>
+            </ul>
+            </li>
+          </ul>
+        </section>
+
+        <section data-background-image="./assets/git_bg.jpg">
+        </section>
+
+        <section data-background-image="./assets/git_bg.jpg" data-state="dim">
+          <h3> Git </h3>
+          <blockquote>
+            I'm an egotistical bastard, and I name all my projects after
+            myself. First 'Linux', now 'git'.
+          </blockquote>
+          <p class="source ">Source: 
+            <em> Linus Torvalds </em>
+          </p>
+          <ul>
+            <li class="fragment">Linus Torvalds</li>
+            <li class="fragment">Maintainer: Junio Hamano</li>
+          </ul>
+        </section>
+
+        <section data-background-image="./assets/git_bg.jpg" data-state="dim">
+          <h3> Kriteriji dizajna </h3>
+          <ul>
+            <li class="fragment">Primjena <em>patcha</em> ne smije trajati više od 3 sekunde</li>
+            <li class="fragment">
+              <q cite="Wikipedia Git">Take Concurrent Versions System (CVS) as an
+                example of what not to do; if in doubt, make the exact opposite
+                decision</q>
+            </li>
+            <li class="fragment">Podrška za distribuirani <em>workflow</em> kao BitKeeper</li>
+            <li class="fragment">Jaka zaštita protiv korupcije, bilo namjerne ili slučajne </li>
+            <li class="fragment">Zamišljen kao baza drugim SCM-ovima</li>
+          </ul>
+        </section>
+
+        <section data-background-image="./assets/git_bg.jpg" data-state="dim">
+          <h3> Git </h3>
+          <ul>
+            <li class="fragment">Brz razvoj:
+              <ul>
+                <li>Početak: 3 travnja 2005.</li>
+                <li>Najava: 6 travnja 2005.</li>
+                <li>self-hosting: 7 travnja 2005.</li>
+                <li>Prvi <em>merge</em> 18 travnja 2005.</li>
+                <li><em>Performance goals: </em> 29 travnja 2005.</li>
+                <li>Kernel: 16. lipnja 2005.</li>
+                <li>Maintainter: 26 lipnja 2005.</li>
+                <li>git1.0: 21. prosinca 2005.</li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+
+        <section data-background-image="./assets/git_bg.jpg" data-state="dim">
+          <h3> Globalno prihvaćen </h3>
+          <p class="source ">Source: 
+            <em> <a href="https://en.wikipedia.org/wiki/Git#Adoption" target="_blank">https://en.wikipedia.org/wiki/Git#Adoption</a> </em>
+          </p>
+          <ul>
+            <li class="fragment">Prema velikom broju statistika najčešće korišteni SCM</li>
+            <li class="fragment">Od veljače 2017. Microsoft Windows u Gitu</li>
+            <li class="fragment">Brojne nove <em>hosting</em> platforme</li>
+            <li class="fragment">Postojeće prisiljene podržati Git</li>
+          </ul>
+        </section>
+
+        <section data-background-image="./assets/git_bg.jpg" data-state="dim">
+          <h3> Razlozi prihvaćanja </h3>
+          <ul>
+            <li class="fragment">Distribuiran <em>workflow</em></li>
+            <li class="fragment"><em>fork + pull-request</em></li>
+            <li class="fragment"><strong>brzina</strong></li>
+            <li class="fragment">Lagano i brzo grananje</li>
+            <li class="fragment">Linux</li>
+          </ul>
+        </section>
+
+        <section>
+          <section data-background-image="./assets/git_bg.jpg" data-state="dim">
+            <h3> Linearno verzioniranje koda </h3>
+            <img class="fragment " src="./assets/git_graf_linear_ideal.png" alt="" />
+            <ul>
+              <li class="fragment">Idealna situacija</li>
+              <li class="fragment">Unaprijed znamo kako aplikacija treba izgledati</li>
+              <li class="fragment">Ili razvijamo sami</li>
+            </ul>
+          </section>
+
+          <section data-background-image="./assets/git_bg.jpg" data-state="dim">
+            <h3> Mit o verzioniranju </h3>
+            <img class="stretch" src="./assets/git_mipxlaa.png" alt="" />
+            <ul>
+              <li class="fragment">Nije <strong>samo</strong> za timove s više ljudi</li>
+              <li class="fragment">Jednostavan i koristan čak i radimo sami</li>
+            </ul>
+          </section>
+        </section>
+
+        <section data-background-image="./assets/git_bg.jpg" data-state="dim">
+          <h3> Linearno verzioniranje koda </h3>
+          <img class="fragment " src="./assets/git_graf_linear.png" alt="" />
+          <ul>
+            <li class="fragment">Česta situacija kada nemamo kontrolu nad distribucijom</li>
+            <li class="fragment">Neki klijenti na jednoj verziji, a neki na drugoj</li>
+            <li class="fragment">"Nova verzija stare verzije"</li>
+          </ul>
+        </section>
+
+        <section>
+          <section data-background-image="./assets/git_bg.jpg" data-state="dim">
+            <h3> Grafovi i spajanje grana </h3>
+            <img class="" src="./assets/git_graf_merge.png" alt="" />
+            <ul>
+              <li class="fragment">Stanje povjesti projekta</li>
+              <li class="fragment">Ne možemo odrediti kojim su redom nastajali čvorovi</li>
+              <li class="fragment">Možemo odrediti ovisnosti čvorova</li>
+            </ul>
+          </section>
+          <section data-background-image="./assets/git_bg.jpg" data-state="dim">
+            <h4> Primjer evolucije projekta </h4>
+          </section>
+          <section data-background-image="./assets/git_bg.jpg" data-state="dim">
+            <img src="./assets/git_graph_merge_evolution1.png" alt=""/>
+          </section>
+          <section data-background-image="./assets/git_bg.jpg" data-state="dim">
+            <img src="./assets/git_graph_merge_evolution2.png" alt=""/>
+          </section>
+          <section data-background-image="./assets/git_bg.jpg" data-state="dim">
+            <img src="./assets/git_graph_merge_evolution3.png" alt=""/>
+          </section>
+          <section data-background-image="./assets/git_bg.jpg" data-state="dim">
+            <img src="./assets/git_graph_merge_evolution4.png" alt=""/>
+          </section>
+          <section data-background-image="./assets/git_bg.jpg" data-state="dim">
+            <img src="./assets/git_graph_merge_evolution5.png" alt=""/>
+          </section>
+          <section data-background-image="./assets/git_bg.jpg" data-state="dim">
+            <img src="./assets/git_graph_merge_evolution6.png" alt=""/>
+          </section>
+          <section data-background-image="./assets/git_bg.jpg" data-state="dim">
+            <img src="./assets/git_graph_merge_evolution7.png" alt=""/>
+          </section>
+        </section>
+
+        <section data-background-image="./assets/git_bg.jpg" data-state="dim">
+          <h3> Primjer dugog feature brancha</h3>
+          <img src="./assets/git_graph_developbranch.png" alt=""/>
+        </section>
+
+        <section>
+          <section data-background-image="./assets/git_bg.jpg" data-state="dim">
+            <h3> Moj prvi git repozitorij </h3>
+            <ul>
+              <li class="fragment">Nije potreban udaljeni server za <em>checkout</em></li>
+              <li class="fragment">Svaki direktorij može biti git repozitorij</li>
+              <li class="fragment">Više <em>remotea</em></li>
+            </ul>
+          </section>
+          <section data-background-image="./assets/git_bg.jpg" data-state="dim">
+            <h3> Inicijalizacija </h3>
+            <pre><code class="bash" data-trim>
+                $ cd moj-prvi-projekt
+                $ git init
+            </code></pre>
+            <ul>
+              <li class="fragment"> <code class="bash inline">.git</code></li>
+              <li class="fragment">Backup = kopiranje .git direktorija</li>
+              <li class="fragment">DEMO</li>
+            </ul>
+          </section>
+          <section data-background-image="./assets/git_bg.jpg" data-state="dim">
+            <h3> Spremanje izmjena </h3>
+            <img src="./assets/git_graf_merge.png" alt=""/>
+            <ul>
+              <li class="fragment"><em>Commit</em> zapisuje stanje projekta</li>
+              <li class="fragment">Promjene se spremaju lokalno</li>
+            </ul>
+          </section>
+        </section>
+
+        <section data-background-image="./assets/git_bg.jpg" data-state="dim">
+          <h3> Index </h3>
+          <ul>
+            <li class="fragment">Ne čuva datoteke nego stanja datoteka</li>
+            <li class="fragment">Mi odlučujemo u kojem trenutku ćemo ih snimiti</li>
+            <li class="fragment"><strong>Git repozitorij </strong>čuva različita stanja datoteka (povijest)</li>
+            <li class="fragment"><strong>Radna verzija repozitorija</strong> čuva trenutno stanje direktorija</li>
+            <li class="fragment"><strong>Poseban "međuprostor" za commit  -> Index</strong></li>
+
+          </ul>
+        </section>
+
+        <section data-background-image="./assets/git_bg.jpg" data-state="dim">
+          <h3>Demo</h3>
+          <p><em>status</em></p>
+          <p><em>add </em></p>
+          <p><em>commit</em></p>
+          <p><em>diff</em></p>
+
+        </section>
+
+        <section data-background-image="./assets/git_bg.jpg" data-state="dim">
+          <h3> Spremanje u index </h3>
+          <ul>
+            <li class="fragment">Dodavanje u index sa add</li>
+            <li class="fragment">Potrebno je dodati i kada obrišemo datoteku (sprema se stanje)</li>
+            <li class="fragment">Možemo dodati i direktorij</li>
+          </ul>
+        </section>
+
+        <!--<section data-background-image="./assets/git_bg.jpg" data-state="dim">-->
+          <!--<h3> Micanje iz indexa </h3>-->
+          <!--<ul>-->
+            <!--<li>-->
+              <!--<pre><code class="bash" data-trim>-->
+                  <!--git reset HEAD -- <datoteka1> <datoteka2>-->
+              <!--</code></pre>-->
+            <!--</li>-->
+            <!--<li class="fragment">Vraćanje datoteke u prethodno stanje-->
+              <!--<pre><code class="bash" data-trim>-->
+                  <!--git checkout HEAD -- <datoteka1> <datoteka2>-->
+              <!--</code></pre>-->
+            <!--</li>-->
+            
+          <!--</ul>-->
+        <!--</section>-->
+
+        <section data-background-image="./assets/git_bg.jpg" data-state="dim">
+          <h2>  DEMO</h2>
+        </section>
+
+
+			</div>
+		</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback:
+            function() { hljs.initHighlightingOnLoad(); } },
+          { src: './plugin/chart/Chart.min.js' },
+          { src: './plugin/chart/csv2chart.js' },
+          { src: './plugin/fullscreen/fullscreen.js' },
+          { src: './plugin/menu/menu.js'}
+
+        ],
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1024,
+        height: 768,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.05,
+
+        keyboard: {
+            39: 'navigateNext',
+            37: 'navigatePrev'
+        },
+
+        transition: 'convex'
+
+      });
+
+      // Shows the slide number using default formatting
+      Reveal.configure({ slideNumber: true });
+
+      // Slide number formatting can be configured using these variables:
+      //  "h.v": 	horizontal . vertical slide number (default)
+      //  "h/v": 	horizontal / vertical slide number
+      //    "c": 	flattened slide number
+      //  "c/t": 	flattened slide number / total slides
+      Reveal.configure({ slideNumber: 'c/t' });
+
+      // Control which views the slide number displays on using the "showSlideNumber" value:
+      //     "all": show on all views (default)
+      // "speaker": only show slide numbers on speaker notes view
+      //   "print": only show slide numbers when printing to PDF
+      Reveal.configure({ showSlideNumber: 'all' });
+
+
+		</script>
+	</body>
+</html>
