@@ -1,0 +1,500 @@
+
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Software Engineering - Lecture 4b</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/night.css" id="theme">
+    <link rel="stylesheet" href="css/levara.css" >
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/xcode.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+      <div class="index">
+        <a href="./index.html" target="_blank">Nazad na index</a>
+      </div>
+      <div class="header">
+        Software Engineering course @ FERIT Osijek. <a href="#attribution">Attribution for background images</a>
+      </div>
+      
+
+			<div class="slides">
+
+        <section data-background-image="./assets/matrix.jpg" data-state="dim">
+          <h3>
+            Software Engineering
+            </br>
+            Programsko inženjerstvo
+          </h3>
+          <p>
+          Izv.prof.dr.sc. Irena Galić <br />
+          Hrvoje Leventić
+          </p>
+        </section>
+
+
+
+
+        <section>
+          <h1>Predavanje 4b</h1>
+          <h2>Modeliranje softvera</h2>
+        </section>
+
+        <section>
+          <h2>Sadržaj</h2>
+          <ul>
+            <li class="fragment">Klasične tehnike modeliranja</li>
+            <li class="fragment">Objekti</li>
+            <li class="fragment">UML</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Zašto modeliranje</h3>
+          <ul>
+            <li class="fragment">Komunikacija</li>
+            <li class="fragment">Različite notacije modeliranja (neformalne skice, box-and-line dijagrami, ...)
+            </li>
+            <li class="fragment">Često neformalna semantika</li>
+            <li class="fragment">Velik broj notacija</li>
+            <li class="fragment">Danas većina potječe iz UML-a</li>
+            <li class="fragment">Tradicionalne tehnike vs. Objektne tehnike</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3> Klasične tehnike modeliranja </h3>
+          <ul>
+            <li class="fragment">Entity--Relationship Modeling (ERM)</li>
+            <li class="fragment">Finite State Machines (FSM)</li>
+            <li class="fragment">Data Flow Diagrams (DFD)</li>
+            <li class="fragment">CRC cards</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3> Entity--Relationship modeling  </h3>
+          <ul>
+            <li class="fragment">ERM razdvaja logičku, semantičku strukturu od implementacije</li>
+              <table class="fragment">
+                <tr>
+                  <td>entity</td>
+                  <td>distinguishable object of some type</td>
+                </tr>
+                <tr>
+                  <td>entity type</td>
+                  <td>type of a set of entities</td>
+                </tr>
+                <tr>
+                  <td>attribute value</td>
+                  <td>piece of information describing an entity</td>
+                </tr>
+                <tr>
+                  <td>attribute </td>
+                  <td>type of a set of attribute values</td>
+                </tr>
+                <tr>
+                  <td>relationship</td>
+                  <td>association betwee two or more entities</td>
+                </tr>
+              </table>
+
+            </li>
+            
+          </ul>
+        </section>
+
+        <section>
+          <h3> Entity--Relationship modeling </h3>
+          <img src="./assets/entity_relationship_diagram.png" alt="" class="stretch">
+            
+        </section>
+
+        <section>
+          <h3> Finite State Machines </h3>
+          <ul>
+            <li class="fragment">Sustav može biti u velikom broju stanja:
+            </li>
+            <li class="fragment">Primjer knjižnice: <br />
+              <ul>
+                <li class="fragment">Kolekcija dostupnih knjiga</li>
+                <li class="fragment">Kolekcija naručenih, ali nedostupnih knjiga</li>
+                <li class="fragment">Kolekcija članova knjižnice</li>
+                <li class="fragment">Stanja računa članova</li>
+              </ul>
+            </li>
+            <li class="fragment">FSM se sastoji od konačnog broja stanja i tranzicija između njih</li>
+            <li class="fragment">Stanja su krugovi, a tranzicije su usmjerene linije</li>
+
+          </ul>
+        </section>
+
+        <section>
+          <h3> Finite State Machines </h3>
+          <img src="./assets/fsm.png" alt="" class="stretch ">
+          <ul>
+            <li class="fragment">Hierarhijska dekompozicija FSM-ova</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3> Data Flow Diagrami </h3>
+          <ul>
+            <li class="fragment">Funkcionalna dekompozicija prema toku podataka</li>
+            <li class="fragment">Komponenta je crna kutija koja transformira neki ulaz u izlaz</li>
+            <li class="fragment">Četiri tipa podatkovnih entiteta: <br />
+              <ul>
+                <li class="fragment">Eksterni entiteti</li>
+                <li class="fragment">Procesi  </li>
+                <li class="fragment">Tokovi podataka</li>
+                <li class="fragment">Spremišta podataka</li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h3> Data Flow Diagrami </h3>
+          <img src="./assets/dfd.png" alt="" class="stretch">
+        </section>
+
+
+        <section>
+          <h3> CRC kartice </h3>
+          <ul>
+            <li class="fragment">Class -- Responsibility -- Collaborators</li>
+            <li class="fragment">Vrlo korisne u ranim fazama razvoja softvera <br />
+              <ul>
+                <li class="fragment">Pomažu identificirati komponente</li>
+                <li class="fragment">Omogućuju raspravu o problemima u dizajnu</li>
+                <li class="fragment">Dokumentacija kolaborativnih dizajnerskih odluka</li>
+              </ul>
+            </li>
+            <li class="fragment">Mogu opisati bilo koji element dizajna</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3> CRC kartice </h3>
+          <img src="./assets/crc.png" alt="" class="stretch">
+        </section>
+      
+        <section>
+          <h3> Nešto o objektima </h3>
+          <ul>
+            <li class="fragment">Svrha dizajna i analize:</li>
+            <li class="fragment">Modeliranje objekata u stvarnom svijetu (Europski pogled) <br />
+              <strong>vs.</strong> <br />
+            </li>
+            <li class="fragment">
+              Identifikacija iskoristivih komponenti i izgradnja hijerarhije naslijeđivanja (Američki pogled)
+            </li>
+            <li class="fragment">Što je objekt? -- više različitih stajališta</li>
+            <li class="fragment"> <code class="cpp inline">object = identity + variables + operations</code></li>
+            <li class="fragment"> <code class="cpp inline">object = identity + state + behaviour</code></li>
+            
+          </ul>
+        </section>
+
+        <section>
+          <h3> Objekt sa stajališta modeliranja </h3>
+          <ul>
+            <li class="fragment">Konceptualni model nekog dijela stvarnog ili imaginarnog svijeta</li>
+            <li class="fragment">Europski pogled</li>
+            <li class="fragment">Karakteristike:
+              <ol>
+                <li class="fragment">Svaki objekt ima identitet</li>
+                <li class="fragment">Svaki objekt ima svojstva</li>
+              </ol>
+            </li>
+            <li class="fragment">Promjenjivo stanje + sučelje</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3> Objekt sa filozofskog stajališta </h3>
+          <ul>
+            <li class="fragment">"Sve je objekt" stajalište</li>
+            <li class="fragment">Dva različita tipa apstrakcija: <br />
+              <ul>
+                <li class="fragment">Entiteti s prirodnim početkom i krajem</li>
+                <li class="fragment">"Vječni" nepromjenjivi entiteti (<em>values</em>)</li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h3> Objekt sa stajališta PI </h3>
+          <ul>
+            <li class="fragment">Apstrakcije podataka</li>
+            <li class="fragment">Enkapsuliraju i podatke i operacije</li>
+            <li class="fragment">Object-based jezici</li>
+            <li class="fragment">Object-oriented jezici (nasljeđivanje)</li>
+            
+          </ul>
+        </section>
+
+        <section>
+          <h3> Objekt sa stajališta implementacije </h3>
+          <ul>
+            <li class="fragment">Kontinuirana struktura u memoriji</li>
+            <li class="fragment">Kompozitni objekti (sadrže manje pod-objekte)</li>
+            <li class="fragment">Najniža razina objeka su 'atomski' podaci</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3> Objekti </h3>
+          <ul>
+            <li class="fragment">Karakterizira ih set atributa (svojstava) <br />
+              <ul>
+                <li class="fragment">Intrinsična svojstva (boja, visina i slično)</li>
+                <li class="fragment">Koncept atributa potječe iz ERM-a</li>
+                <li class="fragment">Definira <strong>stanje (<em>state</em>)</strong> objekta</li>
+              </ul>
+            </li>
+            <li class="fragment">Veze (<em>Relationships</em>) označavaju zajednička svojstva više objekata</li>
+            <li class="fragment">Objekti s istim setom atributa pripadaju istoj <strong>klasi</strong></li>
+            <li class="fragment">Enkapsulira i stanje i ponašanje</li>
+            <li class="fragment">Primjer: <code class="cpp inline"> Customer(Name, Address, BooksOnLoan)</code> <br />
+              <ul>
+                <li>Instanciranje, uništavanje, servisi <br />
+                  ( <code class="cpp inline">NumberOfBooksOnLoan()</code> ) </li>
+              </ul>
+            </li>
+            
+          </ul>
+        </section>
+
+        <section>
+          <h3> Hijerarhija objekata </h3>
+          <img src="./assets/object_hierarchy.png" alt="" class="stretch">
+        </section>
+
+        <section>
+          <h3> UML </h3>
+          <ul>
+            <li class="fragment">Započeo 1980-ih</li>
+            <li class="fragment">Aktualna verzija: UML2</li>
+            <li class="fragment">Najčešće korištena notacija za inženjering zahtjeva i dizajn</li>
+            <li class="fragment">Statički i dinamički dijagrami</li>
+            
+          </ul>
+        </section>
+
+        <section>
+          <h3> Tipovi UML dijagrama </h3>
+          <table class="wide ">
+            <tr>
+              <td><strong> Dijagram </strong></td>
+              <td><strong>  Opis</strong></td>
+            </tr>
+            <tr>
+              <td>Activity (D)</td>
+              <td>Model business processes, workflow, procedural logic. Flowcharts + paralelism</td>
+            </tr>
+            <tr>
+              <td>Class (S)</td>
+              <td>Model classes, their features and relationships</td>
+            </tr>
+            <tr>
+              <td>Communication (D)</td>
+              <td>Model flow of messages between instances of classes</td>
+            </tr>
+            <tr>
+              <td>Component (S)</td>
+              <td>Model a set of components and their interrelationships (through interfaces)</td>
+            </tr>
+            <tr>
+              <td>Composite Structure</td>
+              <td>Model dynamic structure of a class</td>
+            </tr>
+            <tr>
+              <td>Deployment</td>
+              <td>Model physical layout, i.e. assignment of system elements to hardware</td>
+            </tr>
+            <tr>
+              <td>Interaction overview (S)</td>
+              <td>Combines activity diagrams and sequence diagrams</td>
+            </tr>
+            <tr>
+              <td>Object (S)</td>
+              <td>Model objects at some point in time, aka. instance diagram</td>
+            </tr>
+            <tr>
+              <td>Package (S)</td>
+              <td>Model grouping of elements into packets</td>
+            </tr>
+            <tr>
+              <td>Sequence (D)</td>
+              <td>Model order of messages between instances of classes</td>
+            </tr>
+            <tr>
+              <td>State machine (D)</td>
+              <td>Model states in which an object can be, and transitions between states</td>
+            </tr>
+            <tr>
+              <td>Timing (D)</td>
+              <td>Model state changes of an object over time</td>
+            </tr>
+            <tr>
+              <td>Use case (D)</td>
+              <td>Model use cases</td>
+            </tr>
+          </table>
+        </section>
+
+        <section>
+          <h3> The Class Diagram </h3>
+          <img src="./assets/uml_class_dia.png" alt="" class="stretch">
+        </section>
+
+        <section>
+          <h3> The Class Diagram - associations  </h3>
+          <img src="./assets/uml_class_dia_associations.png" alt="" class="stretch">
+          <p class="source">a) association, b) association as attribute, c) association class, d) association class as full class</p>
+        </section>
+
+        <section>
+          <h3>The Class Diagram - interfaces</h3>
+          <img src="./assets/uml_class_dia_interfaces.png" alt="" class="stretch">
+        </section>
+
+        <section>
+          <h3> The State Machine Diagram </h3>
+          <img src="./assets/uml_state_machine_dia.png" alt="" class="stretch">
+        </section>
+
+        <section>
+          <h3>The Sequence Diagram</h3>
+          <img src="./assets/uml_sequence_dia.png" alt="" class="stretch">
+        </section>
+
+        <section>
+          <h3>The Communication Diagram</h3>
+          <img src="./assets/uml_communication_dia.png" alt="" class="stretch">
+        </section>
+
+        <section>
+          <h3>The Component Diagram</h3>
+          <img src="./assets/uml_usecase_dia.png" alt="" class="stretch">
+        </section>
+
+
+
+			</div>
+		</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback:
+            function() { hljs.initHighlightingOnLoad(); } },
+          { src: './plugin/chart/Chart.min.js' },
+          { src: './plugin/chart/csv2chart.js' },
+          { src: './plugin/fullscreen/fullscreen.js' },
+          { src: './plugin/menu/menu.js'}
+
+        ],
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1024,
+        height: 768,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.05,
+
+        keyboard: {
+            39: 'navigateNext',
+            37: 'navigatePrev'
+        },
+
+        transition: 'convex'
+
+      });
+
+      // Shows the slide number using default formatting
+      Reveal.configure({ slideNumber: true });
+
+      // Slide number formatting can be configured using these variables:
+      //  "h.v": 	horizontal . vertical slide number (default)
+      //  "h/v": 	horizontal / vertical slide number
+      //    "c": 	flattened slide number
+      //  "c/t": 	flattened slide number / total slides
+      Reveal.configure({ slideNumber: 'c/t' });
+
+      // Control which views the slide number displays on using the "showSlideNumber" value:
+      //     "all": show on all views (default)
+      // "speaker": only show slide numbers on speaker notes view
+      //   "print": only show slide numbers when printing to PDF
+      Reveal.configure({ showSlideNumber: 'all' });
+
+
+		</script>
+	</body>
+</html>

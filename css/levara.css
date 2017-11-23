@@ -96,3 +96,8 @@ html.dim-low .backgrounds {
 .reveal .red-text {
   color: red;
 }
+
+.reveal table.wide {
+  font-size: 0.5em;
+  width: 100%;
+}
